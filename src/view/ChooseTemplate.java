@@ -4,6 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JRadioButton;
+
+import resources.Strings;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -15,6 +18,10 @@ public class ChooseTemplate {
 	private LatexEditorView latexEditorView;
 	private String previous;
 
+	public LatexEditorView getLatexEditorView() {
+		return latexEditorView;
+	}
+	
 	/**
 	 * Create the application.
 	 * @param latexEditorView 
@@ -39,7 +46,7 @@ public class ChooseTemplate {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JRadioButton book = new JRadioButton("Book");

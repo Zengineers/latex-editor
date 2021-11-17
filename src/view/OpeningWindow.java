@@ -8,7 +8,6 @@ import controller.LatexEditorController;
 import model.VersionsManager;
 import model.strategies.VersionsStrategy;
 import model.strategies.VolatileVersionsStrategy;
-
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 
@@ -19,6 +18,11 @@ public class OpeningWindow {
 
 	private JFrame frame;
 	private LatexEditorView latexEditorView;
+	
+	public LatexEditorView getLatexEditorView() {
+		return latexEditorView;
+	}
+
 	/**
 	 * Launch the application.
 	 */
@@ -55,7 +59,7 @@ public class OpeningWindow {
 	private void initialize() {
 		frame = new JFrame();
 		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
 		JButton btnCreateNewDocument = new JButton("Create New Document");
