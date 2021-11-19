@@ -5,37 +5,24 @@ import java.util.HashMap;
 import resources.Strings;
 
 public class DocumentManager {
-	private HashMap<String, Document> templates;
+	
+	private HashMap<String, Document> templates = new HashMap<String, Document>();
+	private String[] templateNames = {
+			"reportTemplate", "bookTemplate",
+			"articleTemplate", "letterTemplate",
+			"emptyTemplate"
+	};
 	
 	public DocumentManager() {
-		templates = new HashMap<String, Document>();
-		
-		Document document = new Document();
-		document.setContents(getContents("reportTemplate"));
-		templates.put("reportTemplate", document);
-		
-		document = new Document();
-		document.setContents(getContents("bookTemplate"));
-		templates.put("bookTemplate", document);
-		
-		document = new Document();
-		document.setContents(getContents("articleTemplate"));
-		templates.put("articleTemplate", document);
-		
-		document = new Document();
-		document.setContents(getContents("letterTemplate"));
-		templates.put("letterTemplate", document);
-		
-		document = new Document();
-		templates.put("emptyTemplate", document);
+		for (String name : templateNames) {
+			Document document = new Document();
+			document.setContents(Strings.getTemplate(name));
+			templates.put(name, document);
+		}
 	}
 	
 	public Document createDocument(String type) {
 		return templates.get(type).clone();
-	}
-	
-	public String getContents(String type) {
-		return Strings.getTemplate(type);
 	}
 	
 }
