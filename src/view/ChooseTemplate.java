@@ -10,160 +10,190 @@ import javax.swing.JRadioButton;
 
 public class ChooseTemplate {
 
+	/* Frame position and dimension  */
+	private static final int FRAME_X = 100;
+	private static final int FRAME_Y = 100;
+	private static final int FRAME_WIDTH = 450;
+	private static final int FRAME_HEIGHT = 300;
+	
+	/* Buttons' positions and dimensions */
+	private static final int EXIT_BT_Y = 196;
+	private static final int EXIT_BT_X = 46;
+	private static final int CREATE_BT_Y = 196;
+	private static final int CREATE_BT_X = 213;
+	private static final int BT_HEIGHT = 25;
+	private static final int BT_WIDTH = 97;
+	
+	/* Label position and dimensions */
+	private static final int CHOOSE_LB_HEIGHT = 16;
+	private static final int CHOOSE_LB_WIDTH = 332;
+	private static final int CHOOSE_LB_Y = 13;
+	private static final int CHOOSE_LB_X = 42;
+	
+	/* Radio buttons' positions and dimensions */
+	private static final int ARTICLE_RBT_Y = 137;
+	private static final int ARTICLE_RBT_X = 42;
+	private static final int BOOK_RBT_Y = 51;
+	private static final int BOOK_RBT_X = 42;
+	private static final int LETTER_RBT_Y = 137;
+	private static final int LETTER_RBT_X = 213;
+	private static final int REPORT_RBT_Y = 51;
+	private static final int REPORT_RBT_X = 213;
+	private static final int RBT_WIDTH = 127;
+	private static final int RBT_HEIGHT = 25;
+	
+	
 	private JFrame frame;
-	private LatexEditorView latexEditorView;
 	private String previous;
-	
-	private JButton btnCreate;
-	private JRadioButton book;
-	private JRadioButton article;
-	private JRadioButton report;
-	private JRadioButton letter;
+	private LatexEditorView latexEditorView;
 	private MainWindow mainWindow;
+	private JLabel lbChooseTemplate;
+	private JButton btCreate;
+	private JRadioButton rbtBook;
+	private JRadioButton rbtArticle;
+	private JRadioButton rbtReport;
+	private JRadioButton rbtLetter;
+	private JButton btBack;
 
-	public LatexEditorView getLatexEditorView() {
-		return latexEditorView;
-	}
-	
-	public JButton getBtnCreate() {
-		return btnCreate;
-	}
+	public LatexEditorView getLatexEditorView() { return latexEditorView; }
+	public JButton getBtCreate() { return btCreate; }
+	public JRadioButton getRbtBook() { return rbtBook; }
+	public JRadioButton getRbtArticle() { return rbtArticle; }
+	public JRadioButton getRbtReport() { return rbtReport; }
+	public JRadioButton getRbtLetter() { return rbtLetter; }	
+	public MainWindow getMainWindow() { return mainWindow; }
 
-	public JRadioButton getBookRadioButton() {
-		return book;
-	}
 
-	public JRadioButton getArticleRadioButton() {
-		return article;
-	}
-
-	public JRadioButton getReportRadioButton() {
-		return report;
-	}
-
-	public JRadioButton getLetterRadioButon() {
-		return letter;
-	}
-	
-	public MainWindow getMainWindow() {
-		return mainWindow;
-	}
-
-	/**
-	 * Create the application.
-	 * @param latexEditorView 
-	 */
 	public ChooseTemplate(LatexEditorView latexEditorView, String previous) {
 		this.latexEditorView = latexEditorView;
 		this.previous = previous;
-		initialize();
+		initializeFrame();
 		frame.setVisible(true);
 	}
 
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void diselectRadioButtons(JRadioButton radioButton1, JRadioButton radioButton2, JRadioButton radioButton3,JRadioButton radioButton4) {
-		if(radioButton1.isSelected()) {
-			radioButton2.setSelected(false);
-			radioButton3.setSelected(false);
-			radioButton4.setSelected(false);
-		}
-	}
-	private void initialize() {
+	private void initializeFrame() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
+		frame.setBounds(FRAME_X, FRAME_Y, FRAME_WIDTH, FRAME_HEIGHT);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
+		frame.setTitle("Latex Editor");	
 		
-		book = new JRadioButton("Book");
-		article = new JRadioButton("Article");
-		report = new JRadioButton("Report");
-		letter = new JRadioButton("Letter");
-		
-		book.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				diselectRadioButtons(book, article, report, letter);
-			}
-		});
-		book.setBounds(42, 51, 127, 25);
-		frame.getContentPane().add(book);
-		
-		JLabel lblChooseTemplate = new JLabel("Choose template. (Leave empty for blank document)");
-		lblChooseTemplate.setBounds(42, 13, 332, 16);
-		frame.getContentPane().add(lblChooseTemplate);
-		
-		
-		article.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				diselectRadioButtons(article, book, report, letter);
+		addChooseTemplateLabel();
+		addBookRadioButton();
+		addArticleRadioButton();
+		addReportRadioButton();
+		addLetterRadioButton();
+		addCreateButton();
+		addBackButton();
+	}
 
-			}
-		});
-		article.setBounds(42, 137, 127, 25);
-		frame.getContentPane().add(article);
-		
-		
-		report.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				diselectRadioButtons(report, article, book, letter);
-				
-			}
-		});
-		report.setBounds(213, 51, 127, 25);
-		frame.getContentPane().add(report);
-		
-		
-		letter.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				diselectRadioButtons( letter, report, article, book);
-			}
-		});
-		letter.setBounds(213, 137, 127, 25);
-		frame.getContentPane().add(letter);
-		
-		btnCreate = new JButton("Create");
-		btnCreate.addActionListener(new ActionListener() {
+	private void addCreateButton() {
+		btCreate = new JButton("Create");
+		btCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				if(book.isSelected()) {
+				if(rbtBook.isSelected()) {
 					latexEditorView.setType("bookTemplate");
 				}
-				else if(report.isSelected()) {
+				else if(rbtReport.isSelected()) {
 					latexEditorView.setType("reportTemplate");
 				}
-				else if(article.isSelected()) {
+				else if(rbtArticle.isSelected()) {
 					latexEditorView.setType("articleTemplate");
 				}
-				else if(letter.isSelected()) {
+				else if(rbtLetter.isSelected()) {
 					latexEditorView.setType("letterTemplate");
 				}
 				else {
 					latexEditorView.setType("emptyTemplate");
 				}
-
-				latexEditorView.getController().enact("create");
-				mainWindow = new MainWindow(latexEditorView);
-				frame.dispose();
+				createMainWindow();
 			}
 		});
-		btnCreate.setBounds(213, 196, 97, 25);
-		frame.getContentPane().add(btnCreate);
-		
-		JButton btnBack = new JButton("Back");
-		btnBack.addActionListener(new ActionListener() {
+		btCreate.setBounds(CREATE_BT_X, CREATE_BT_Y, BT_WIDTH, BT_HEIGHT);
+		frame.getContentPane().add(btCreate);
+	}
+	
+	private void createMainWindow() {
+		latexEditorView.getController().enact("create");
+		mainWindow = new MainWindow(latexEditorView);
+		frame.dispose();
+	}
+	
+	private void addChooseTemplateLabel() {
+		lbChooseTemplate = new JLabel("Choose template. (Leave empty for blank document)");
+		lbChooseTemplate.setBounds(CHOOSE_LB_X, CHOOSE_LB_Y, 
+				CHOOSE_LB_WIDTH, CHOOSE_LB_HEIGHT);
+		frame.getContentPane().add(lbChooseTemplate);
+	}
+	
+	private void addArticleRadioButton() {
+		rbtArticle = new JRadioButton("Article");
+		rbtArticle.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				diselectRadioButtons(rbtBook, rbtReport, rbtLetter);
+
+			}
+		});
+		rbtArticle.setBounds(ARTICLE_RBT_X, ARTICLE_RBT_Y, RBT_WIDTH, RBT_HEIGHT);
+		frame.getContentPane().add(rbtArticle);
+	}
+	
+	private void addBookRadioButton() {
+		rbtBook = new JRadioButton("Book");
+		rbtBook.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				diselectRadioButtons(rbtArticle, rbtReport, rbtLetter);
+			}
+		});
+		rbtBook.setBounds(BOOK_RBT_X, BOOK_RBT_Y, RBT_WIDTH, RBT_HEIGHT);
+		frame.getContentPane().add(rbtBook);
+	}
+	
+	private void addLetterRadioButton() {
+		rbtLetter = new JRadioButton("Letter");
+		rbtLetter.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				diselectRadioButtons(rbtReport, rbtArticle, rbtBook);
+			}
+		});
+		rbtLetter.setBounds(LETTER_RBT_X, LETTER_RBT_Y, RBT_WIDTH, RBT_HEIGHT);
+		frame.getContentPane().add(rbtLetter);
+	}
+	
+	private void addReportRadioButton() {
+		rbtReport = new JRadioButton("Report");
+		rbtReport.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				diselectRadioButtons(rbtArticle, rbtBook, rbtLetter);
+				
+			}
+		});
+		rbtReport.setBounds(REPORT_RBT_X, REPORT_RBT_Y, RBT_WIDTH, RBT_HEIGHT);
+		frame.getContentPane().add(rbtReport);
+	}
+	
+	private void addBackButton() {
+		btBack = new JButton("Back");
+		btBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				if(previous.equals("main")) {
-					MainWindow mainWindow = new MainWindow(latexEditorView);
+					 mainWindow = new MainWindow(latexEditorView);
 					frame.dispose();
 				}
 				else {
-					OpeningWindow openingWindow = new OpeningWindow();
+					new OpeningWindow();
 					frame.dispose();
 				}
 			}
 		});
-		btnBack.setBounds(46, 196, 97, 25);
-		frame.getContentPane().add(btnBack);
+		btBack.setBounds(EXIT_BT_X, EXIT_BT_Y, BT_WIDTH, BT_HEIGHT);
+		frame.getContentPane().add(btBack);
+	}
+	
+	private void diselectRadioButtons(JRadioButton rbt2, JRadioButton rbt3,JRadioButton rbt4) {
+		rbt2.setSelected(false);
+		rbt3.setSelected(false);
+		rbt4.setSelected(false);
 	}
 	
 	public void disposeFrame() {

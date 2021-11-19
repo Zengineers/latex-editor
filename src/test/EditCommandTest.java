@@ -41,7 +41,7 @@ class EditCommandTest extends EnvironmentSetup {
 		
 		expectedContents = estimateExpectedContents(inputText);
 		mainWindow.getEditorPane().setText(expectedContents);
-		mainWindow.getMntmSave().doClick();	
+		mainWindow.getMiSave().doClick();	
 		
 		String documentContents = latexEditorView.getCurrentDocument().getContents();
 		String editorPaneContents = mainWindow.getEditorPane().getText();

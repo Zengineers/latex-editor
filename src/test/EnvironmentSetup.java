@@ -20,29 +20,29 @@ public class EnvironmentSetup {
 	}
 	
 	protected static void setUpChooseTemplate() {
-		openingWindow.getBtnCreateNewDocument().doClick();
+		openingWindow.getBtCreateNewDocument().doClick();
 		chooseTemplate = openingWindow.getChooseTemplate();
 		latexEditorView = chooseTemplate.getLatexEditorView();
 	}
 	
 	protected static void setUpMainWindow() {
-		chooseTemplate.getBtnCreate().doClick();
+		chooseTemplate.getBtCreate().doClick();
 		mainWindow = chooseTemplate.getMainWindow();
 		latexEditorView = mainWindow.getLatexEditorView();
 	}
 	
 	protected static void selectTemplateRadioButton(String templateType) {
 		if (templateType.equals("bookTemplate")) {
-			chooseTemplate.getBookRadioButton().setSelected(true);
+			chooseTemplate.getRbtBook().setSelected(true);
 		}
 		else if (templateType.equals("reportTemplate")) {
-			chooseTemplate.getReportRadioButton().setSelected(true);
+			chooseTemplate.getRbtReport().setSelected(true);
 		}
 		else if (templateType.equals("articleTemplate")) {
-			chooseTemplate.getArticleRadioButton().setSelected(true);
+			chooseTemplate.getRbtArticle().setSelected(true);
 		}
 		else if (templateType.equals("letterTemplate")) {
-			chooseTemplate.getLetterRadioButon().setSelected(true);
+			chooseTemplate.getRbtLetter().setSelected(true);
 		}
 	}
 
@@ -61,28 +61,28 @@ public class EnvironmentSetup {
 	
 	private static JMenuItem getLatexCommandMenuItem(String latexCommandType) {
 		if (latexCommandType.equals("chapter")) {
-			return mainWindow.getMntmChapter();
+			return mainWindow.getMiChapter();
 		}
 		else if (latexCommandType.equals("section")) {
-			return mainWindow.getMntmAddSection();
+			return mainWindow.getMiSection();
 		}
 		else if (latexCommandType.equals("subsection")) {
-			return mainWindow.getMntmAddSubsection();
+			return mainWindow.getMiSubsection();
 		}
 		else if (latexCommandType.equals("subsubsection")) {
-			return mainWindow.getMntmAddSubsubsection();
+			return mainWindow.getMiSubsubsection();
 		}
 		else if (latexCommandType.equals("itemize")) {
-			return mainWindow.getMntmItemize();
+			return mainWindow.getMiItemizeList();
 		}
 		else if (latexCommandType.equals("enumerate")) {
-			return mainWindow.getMntmEnumerate();
+			return mainWindow.getMiEnumerateList();
 		}
 		else if (latexCommandType.equals("table")) {
-			return mainWindow.getMntmTable();
+			return mainWindow.getMiTable();
 		}
 		else if (latexCommandType.equals("figure")) {
-			return mainWindow.getMntmFigure();
+			return mainWindow.getMiFigure();
 		}
 		return null;
 	}
