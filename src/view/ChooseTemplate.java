@@ -1,27 +1,54 @@
 package view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JRadioButton;
-
-import resources.Strings;
-
-import javax.swing.JLabel;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 
 public class ChooseTemplate {
 
 	private JFrame frame;
 	private LatexEditorView latexEditorView;
 	private String previous;
+	
+	private JButton btnCreate;
+	private JRadioButton book;
+	private JRadioButton article;
+	private JRadioButton report;
+	private JRadioButton letter;
+	private MainWindow mainWindow;
 
 	public LatexEditorView getLatexEditorView() {
 		return latexEditorView;
 	}
 	
+	public JButton getBtnCreate() {
+		return btnCreate;
+	}
+
+	public JRadioButton getBookRadioButton() {
+		return book;
+	}
+
+	public JRadioButton getArticleRadioButton() {
+		return article;
+	}
+
+	public JRadioButton getReportRadioButton() {
+		return report;
+	}
+
+	public JRadioButton getLetterRadioButon() {
+		return letter;
+	}
+	
+	public MainWindow getMainWindow() {
+		return mainWindow;
+	}
+
 	/**
 	 * Create the application.
 	 * @param latexEditorView 
@@ -49,10 +76,10 @@ public class ChooseTemplate {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
 		
-		JRadioButton book = new JRadioButton("Book");
-		JRadioButton article = new JRadioButton("Article");
-		JRadioButton report = new JRadioButton("Report");
-		JRadioButton letter = new JRadioButton("Letter");
+		book = new JRadioButton("Book");
+		article = new JRadioButton("Article");
+		report = new JRadioButton("Report");
+		letter = new JRadioButton("Letter");
 		
 		book.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -95,7 +122,7 @@ public class ChooseTemplate {
 		letter.setBounds(213, 137, 127, 25);
 		frame.getContentPane().add(letter);
 		
-		JButton btnCreate = new JButton("Create");
+		btnCreate = new JButton("Create");
 		btnCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(book.isSelected()) {
@@ -115,7 +142,7 @@ public class ChooseTemplate {
 				}
 
 				latexEditorView.getController().enact("create");
-				MainWindow mainWindow = new MainWindow(latexEditorView);
+				mainWindow = new MainWindow(latexEditorView);
 				frame.dispose();
 			}
 		});
@@ -138,4 +165,9 @@ public class ChooseTemplate {
 		btnBack.setBounds(46, 196, 97, 25);
 		frame.getContentPane().add(btnBack);
 	}
+	
+	public void disposeFrame() {
+		frame.dispose();
+	}
+	
 }
