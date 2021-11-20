@@ -1,27 +1,25 @@
 package controller.commands;
 
+import controller.LatexEditorController;
 import model.Document;
 import model.DocumentManager;
-import model.VersionTrackingManager;
-import view.LatexEditorView;
 
 public class CreateCommand implements Command {
+	private LatexEditorController latexEditorController;
 	private DocumentManager documentManager;
-	private VersionTrackingManager versionsManager;
-	private LatexEditorView latexEditorView;
 	
-	public CreateCommand(DocumentManager documentManager, VersionTrackingManager versionsManager, LatexEditorView latexEditorView) {
-		super();
-		this.documentManager = documentManager;
-		this.versionsManager = versionsManager;
-		this.latexEditorView = latexEditorView;
+	
+	public CreateCommand() {
+		latexEditorController = LatexEditorController.getInstance();
+		documentManager = DocumentManager.getInstance();
 	}
 
+	
 	@Override
 	public void execute() {
-		String type = latexEditorView.getType();
-		Document document = documentManager.createDocument(type);
-		latexEditorView.setCurrentDocument(document);
+		String templateType = latexEditorController.getTemplateType();
+		Document document = documentManager.createDocument(templateType);
+		documentManager.setCurrentDocument(document);
 	}
 
 }

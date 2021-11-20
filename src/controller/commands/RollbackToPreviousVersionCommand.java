@@ -3,18 +3,17 @@ package controller.commands;
 import model.VersionTrackingManager;
 
 public class RollbackToPreviousVersionCommand implements Command {
-	private VersionTrackingManager versionsManager;
+	private VersionTrackingManager versionTrackingManager;
 	
 	
-	public RollbackToPreviousVersionCommand(VersionTrackingManager versionsManager) {
-		this.versionsManager = versionsManager;
+	public RollbackToPreviousVersionCommand() {
+		versionTrackingManager = VersionTrackingManager.getInstance();
 	}
 
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-		versionsManager.rollback();
+		versionTrackingManager.rollback();
 	}
 
 }

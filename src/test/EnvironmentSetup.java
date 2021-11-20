@@ -2,33 +2,33 @@ package test;
 
 import javax.swing.JMenuItem;
 
+import controller.LatexEditorController;
 import view.ChooseTemplate;
-import view.LatexEditorView;
 import view.MainWindow;
 import view.OpeningWindow;
 
 public class EnvironmentSetup {
 
-	protected static LatexEditorView latexEditorView;
+	protected static LatexEditorController latexEditorController;
 	protected static OpeningWindow openingWindow;
 	protected static ChooseTemplate chooseTemplate;
 	protected static MainWindow mainWindow;
 	
 	protected static void setUpOpeningWindow() {
 		openingWindow = new OpeningWindow();
-		latexEditorView = openingWindow.getLatexEditorView();
+		latexEditorController = openingWindow.getLatexEditorController();
 	}
 	
 	protected static void setUpChooseTemplate() {
 		openingWindow.getBtCreateNewDocument().doClick();
 		chooseTemplate = openingWindow.getChooseTemplate();
-		latexEditorView = chooseTemplate.getLatexEditorView();
+		latexEditorController = chooseTemplate.getLatexEditorController();
 	}
 	
 	protected static void setUpMainWindow() {
 		chooseTemplate.getBtCreate().doClick();
 		mainWindow = chooseTemplate.getMainWindow();
-		latexEditorView = mainWindow.getLatexEditorView();
+		latexEditorController = mainWindow.getLatexEditorController();
 	}
 	
 	protected static void selectTemplateRadioButton(String templateType) {
@@ -47,16 +47,13 @@ public class EnvironmentSetup {
 	}
 
 	protected static void clickLatexCommandMenuItem(String latexCommandType) {
-		if (!mainWindow.getMnCommands().isEnabled())
-			return;
-
-		JMenuItem mntmCommand = getLatexCommandMenuItem(latexCommandType);
+		JMenuItem miCommand = getLatexCommandMenuItem(latexCommandType);
 		
-		if (mntmCommand == null)
+		if (miCommand == null)
 			return;
 		
-		if (mntmCommand.isEnabled())
-			mntmCommand.doClick();
+		if (miCommand.isEnabled())
+			miCommand.doClick();
 	}
 	
 	private static JMenuItem getLatexCommandMenuItem(String latexCommandType) {
@@ -91,7 +88,7 @@ public class EnvironmentSetup {
 		if (openingWindow != null) openingWindow.disposeFrame();
 		if (chooseTemplate != null) chooseTemplate.disposeFrame();
 		if (mainWindow != null) mainWindow.disposeFrame();
-		latexEditorView = null;
+		latexEditorController = null;
 		openingWindow = null;
 		chooseTemplate = null;
 		mainWindow = null;

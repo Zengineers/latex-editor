@@ -30,7 +30,7 @@ class CreateCommandTest extends EnvironmentSetup {
 		selectTemplateRadioButton(templateType);
 		setUpMainWindow();	
 		
-		String documentContents = latexEditorView.getCurrentDocument().getContents();	
+		String documentContents = latexEditorController.getDocumentManager().getCurrentDocument().getContents();	
 		String templateContents = Strings.getTemplate(templateType);
 		
 		assertEquals(documentContents, templateContents);

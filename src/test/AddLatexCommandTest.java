@@ -2,12 +2,10 @@ package test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.ValueSource;
 
 import resources.Strings;
 
@@ -49,8 +47,9 @@ class AddLatexCommandTest extends EnvironmentSetup {
 		
 		expectedContents = estimateExpectedContents(templateType, latexCommandType);
 		clickLatexCommandMenuItem(latexCommandType);
+		mainWindow.getMiSave().doClick();
 		
-		String documentContents = latexEditorView.getCurrentDocument().getContents();
+		String documentContents = latexEditorController.getDocumentManager().getCurrentDocument().getContents();
 		String editorPaneContents = mainWindow.getEditorPane().getText();
 		
 		assertEquals(documentContents, expectedContents);

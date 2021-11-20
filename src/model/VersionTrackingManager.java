@@ -5,38 +5,24 @@ import javax.swing.JOptionPane;
 import model.strategies.StableVersionTrackingStrategy;
 import model.strategies.VersionTrackingStrategy;
 import model.strategies.VolatileVersionTrackingStrategy;
-import view.LatexEditorView;
 
 public class VersionTrackingManager {
-	private static VersionTrackingManager instance;
+	private static VersionTrackingManager instance = null;
 
-	private VersionTrackingStrategy versionsStrategy;
-	private LatexEditorView latexEditorView;
+	private VersionTrackingStrategy versionTrackingStrategy;
+	private DocumentManager documentManager;
 	private boolean isEnabled;
 	private String strategyType;
-	
-	static {
-		try {
-			instance = new VersionTrackingManager();
-		} catch (Exception e) {
-			throw new RuntimeException("An error occured!", e);
-		}
-	}
 
-	private VersionTrackingManager() {}
+	private VersionTrackingManager() {
+		versionTrackingStrategy = new VolatileVersionTrackingStrategy();
+		documentManager = DocumentManager.getInstance();
+	}
 	
 	public static VersionTrackingManager getInstance() {
+		if (instance == null)
+			instance = new VersionTrackingManager();
 		return instance;
-	}
-	
-	/* TODO remove after LatexEditorView refactor */
-	public LatexEditorView getLatexEditorView() {
-		return latexEditorView;
-	}
-
-	/* TODO remove after LatexEditorView refactor */
-	public void setLatexEditorView(LatexEditorView latexEditorView) {
-		this.latexEditorView = latexEditorView;
 	}
 	
 	public String getStrategyType() {
@@ -48,11 +34,11 @@ public class VersionTrackingManager {
 	}
 
 	public void setVersionTrackingStrategy(VersionTrackingStrategy strategy) {
-		this.versionsStrategy = strategy;
+		this.versionTrackingStrategy = strategy;
 	}
 
 	public VersionTrackingStrategy getStrategy() {
-		return versionsStrategy;
+		return versionTrackingStrategy;
 	}
 	
 	public boolean isEnabled() {
@@ -65,53 +51,45 @@ public class VersionTrackingManager {
 
 	public void disable() {
 		isEnabled = false;
-	}
-	
-//	public VersionTrackingManager(VersionTrackingStrategy versionsStrategy, LatexEditorView latexEditorView) {
-//		this.versionsStrategy = versionsStrategy;
-//		this.latexEditorView = latexEditorView;
-//	}
-
-	
+	}	
 
 	public void  putVersion(Document document) {
-		versionsStrategy.putVersion(document);
+		versionTrackingStrategy.putVersion(document);
 	}
 	
 	public void enableStrategy() {
-		//String strategyType = latexEditorView.getStrategy();
-		if(strategyType.equals("volatile") && versionsStrategy instanceof VolatileVersionTrackingStrategy) {
+		if(strategyType.equals("volatile") && versionTrackingStrategy instanceof VolatileVersionTrackingStrategy) {
 			enable();
 		}
-		else if(strategyType.equals("stable") && versionsStrategy instanceof VolatileVersionTrackingStrategy) {
+		else if(strategyType.equals("stable") && versionTrackingStrategy instanceof VolatileVersionTrackingStrategy) {
 			VersionTrackingStrategy newStrategy = new StableVersionTrackingStrategy();
-			newStrategy.setEntireHistory(versionsStrategy.getEntireHistory());
-			versionsStrategy = newStrategy;
+			newStrategy.setEntireHistory(versionTrackingStrategy.getEntireHistory());
+			versionTrackingStrategy = newStrategy;
 			enable();
 		}
-		else if(strategyType.equals("volatile") && versionsStrategy instanceof StableVersionTrackingStrategy) {
+		else if(strategyType.equals("volatile") && versionTrackingStrategy instanceof StableVersionTrackingStrategy) {
 			VersionTrackingStrategy newStrategy = new VolatileVersionTrackingStrategy();
-			newStrategy.setEntireHistory(versionsStrategy.getEntireHistory());
-			versionsStrategy = newStrategy;
+			newStrategy.setEntireHistory(versionTrackingStrategy.getEntireHistory());
+			versionTrackingStrategy = newStrategy;
 			enable();
 		}
-		else if(strategyType.equals("stable") && versionsStrategy instanceof StableVersionTrackingStrategy) {
+		else if(strategyType.equals("stable") && versionTrackingStrategy instanceof StableVersionTrackingStrategy) {
 			enable();
 		}
 	}
 
 	public void changeStrategy() {
 		//String strategyType = latexEditorView.getStrategy();
-		if(strategyType.equals("stable") && versionsStrategy instanceof VolatileVersionTrackingStrategy) {
+		if(strategyType.equals("stable") && versionTrackingStrategy instanceof VolatileVersionTrackingStrategy) {
 			VersionTrackingStrategy newStrategy = new StableVersionTrackingStrategy();
-			newStrategy.setEntireHistory(versionsStrategy.getEntireHistory());
-			versionsStrategy = newStrategy;
+			newStrategy.setEntireHistory(versionTrackingStrategy.getEntireHistory());
+			versionTrackingStrategy = newStrategy;
 			enable();
 		}
-		else if(strategyType.equals("volatile") && versionsStrategy instanceof StableVersionTrackingStrategy) {
+		else if(strategyType.equals("volatile") && versionTrackingStrategy instanceof StableVersionTrackingStrategy) {
 			VersionTrackingStrategy newStrategy = new VolatileVersionTrackingStrategy();
-			newStrategy.setEntireHistory(versionsStrategy.getEntireHistory());
-			versionsStrategy = newStrategy;
+			newStrategy.setEntireHistory(versionTrackingStrategy.getEntireHistory());
+			versionTrackingStrategy = newStrategy;
 			enable();
 		}
 	}
@@ -121,13 +99,13 @@ public class VersionTrackingManager {
 			JOptionPane.showMessageDialog(null, "Strategy is not enabled", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 		}
 		else {
-			Document doc = versionsStrategy.getVersion();
+			Document doc = versionTrackingStrategy.getVersion();
 			if(doc == null) {
 				JOptionPane.showMessageDialog(null, "No version available", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 			}
 			else {
-				versionsStrategy.removeVersion();
-				latexEditorView.setCurrentDocument(doc);
+				versionTrackingStrategy.removeVersion();
+				documentManager.setCurrentDocument(doc);
 			}
 		}
 	}

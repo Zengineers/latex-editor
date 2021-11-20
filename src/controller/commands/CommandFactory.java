@@ -1,50 +1,34 @@
 package controller.commands;
 
-import model.DocumentManager;
-import model.VersionTrackingManager;
-import view.LatexEditorView;
-
-public class CommandFactory {
-	private DocumentManager documentManager;
-	private VersionTrackingManager versionsManager;
-	private LatexEditorView latexEditorView;
+public class CommandFactory {	
 	
-	
-	public CommandFactory(VersionTrackingManager versionsManager, LatexEditorView latexEditorView) {
-		super();
-		this.latexEditorView = latexEditorView;
-		this.versionsManager = versionsManager;
-		documentManager = DocumentManager.getInstance();
-	}
-
-
 	public Command createCommand(String type) {
 		if(type.equals("addLatex")) {
-			return new AddLatexCommand(latexEditorView);
+			return new AddLatexCommand();
 		}
 		if(type.equals("changeVersionsStrategy")) {
-			return new ChangeVersionsStrategyCommand(versionsManager);
+			return new ChangeVersionsStrategyCommand();
 		}
 		if(type.equals("create")) {
-			return new CreateCommand(documentManager, versionsManager, latexEditorView);
+			return new CreateCommand();
 		}
 		if(type.equals("disableVersionsManagement")) {
-			return new DisableVersionsManagementCommand(versionsManager);
+			return new DisableVersionsManagementCommand();
 		}
 		if(type.equals("edit")) {
-			return new EditCommand(latexEditorView);
+			return new EditCommand();
 		}
 		if(type.equals("enableVersionsManagement")) {
-			return new EnableVersionsManagementCommand(versionsManager);
+			return new EnableVersionsManagementCommand();
 		}
 		if(type.equals("load")) {
-			return new LoadCommand(latexEditorView);
+			return new LoadCommand();
 		}
 		if(type.equals("rollbackToPreviousVersion")) {
-			return new RollbackToPreviousVersionCommand(versionsManager);
+			return new RollbackToPreviousVersionCommand();
 		}
 		if(type.equals("save")) {
-			return new SaveCommand(latexEditorView);
+			return new SaveCommand();
 		}
 		return null;
 	}

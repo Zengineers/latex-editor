@@ -3,18 +3,17 @@ package controller.commands;
 import model.VersionTrackingManager;
 
 public class EnableVersionsManagementCommand implements Command {
-	private VersionTrackingManager versionsManager;
+	private VersionTrackingManager versionTrackingManager;
 	
-	public EnableVersionsManagementCommand(VersionTrackingManager versionsManager) {
-		super();
-		this.versionsManager = versionsManager;
+	
+	public EnableVersionsManagementCommand() {
+		versionTrackingManager = VersionTrackingManager.getInstance();
 	}
 
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-		versionsManager.enableStrategy();
+		versionTrackingManager.enableStrategy();
 	}
 
 }

@@ -9,6 +9,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 
+import controller.LatexEditorController;
+
 public class ChooseTemplate {
 
 	/* Frame position and dimension  */
@@ -43,9 +45,10 @@ public class ChooseTemplate {
 	private static final int RBT_WIDTH = 127;
 	private static final int RBT_HEIGHT = 25;
 	
+	
 	private JFrame frame;
-	private String previous;
-	private LatexEditorView latexEditorView;
+	private String previousFrame;
+	private LatexEditorController latexEditorController;
 	private MainWindow mainWindow;
 	private JLabel lbChooseTemplate;
 	private ButtonGroup radioButtonGroup;
@@ -56,7 +59,7 @@ public class ChooseTemplate {
 	private JButton btCreate;
 	private JButton btBack;
 
-	public LatexEditorView getLatexEditorView() { return latexEditorView; }
+	public LatexEditorController getLatexEditorController() { return latexEditorController; }	
 	public JButton getBtCreate() { return btCreate; }
 	public JRadioButton getRbtBook() { return rbtBook; }
 	public JRadioButton getRbtArticle() { return rbtArticle; }
@@ -65,9 +68,9 @@ public class ChooseTemplate {
 	public MainWindow getMainWindow() { return mainWindow; }
 
 
-	public ChooseTemplate(LatexEditorView latexEditorView, String previous) {
-		this.latexEditorView = latexEditorView;
-		this.previous = previous;
+	public ChooseTemplate(String previousFrame) {
+		latexEditorController = LatexEditorController.getInstance();		
+		this.previousFrame = previousFrame;
 		initializeFrame();
 		frame.setVisible(true);
 	}
@@ -109,19 +112,19 @@ public class ChooseTemplate {
 		btCreate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				if(rbtBook.isSelected()) {
-					latexEditorView.setType("bookTemplate");
+					latexEditorController.setTemplateType("bookTemplate");
 				}
 				else if(rbtReport.isSelected()) {
-					latexEditorView.setType("reportTemplate");
+					latexEditorController.setTemplateType("reportTemplate");
 				}
 				else if(rbtArticle.isSelected()) {
-					latexEditorView.setType("articleTemplate");
+					latexEditorController.setTemplateType("articleTemplate");
 				}
 				else if(rbtLetter.isSelected()) {
-					latexEditorView.setType("letterTemplate");
+					latexEditorController.setTemplateType("letterTemplate");
 				}
 				else {
-					latexEditorView.setType("emptyTemplate");
+					latexEditorController.setTemplateType("emptyTemplate");
 				}
 				createMainWindow();
 			}
@@ -131,8 +134,8 @@ public class ChooseTemplate {
 	}
 	
 	private void createMainWindow() {
-		latexEditorView.getController().enact("create");
-		mainWindow = new MainWindow(latexEditorView);
+		latexEditorController.enact("create");
+		mainWindow = new MainWindow();
 		frame.dispose();
 	}
 	
@@ -140,8 +143,8 @@ public class ChooseTemplate {
 		btBack = new JButton("Back");
 		btBack.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				if(previous.equals("main")) {
-					mainWindow = new MainWindow(latexEditorView);
+				if(previousFrame.equals("main")) {
+					mainWindow = new MainWindow();
 					frame.dispose();
 				}
 				else {

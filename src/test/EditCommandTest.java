@@ -7,11 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import controller.LatexEditorController;
-import model.VersionTrackingManager;
-import view.LatexEditorView;
-import view.MainWindow;
-
 class EditCommandTest extends EnvironmentSetup {
 
 	private String expectedContents;
@@ -43,7 +38,7 @@ class EditCommandTest extends EnvironmentSetup {
 		mainWindow.getEditorPane().setText(expectedContents);
 		mainWindow.getMiSave().doClick();	
 		
-		String documentContents = latexEditorView.getCurrentDocument().getContents();
+		String documentContents = latexEditorController.getDocumentManager().getCurrentDocument().getContents();
 		String editorPaneContents = mainWindow.getEditorPane().getText();
 		
 		assertEquals(documentContents, expectedContents);

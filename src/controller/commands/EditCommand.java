@@ -1,27 +1,32 @@
 package controller.commands;
 
+import javax.swing.JEditorPane;
+
+import controller.LatexEditorController;
+import model.DocumentManager;
 import model.VersionTrackingManager;
-import view.LatexEditorView;
 
 public class EditCommand implements Command {
-	private LatexEditorView latexEditorView;
+	private LatexEditorController latexEditorController;
 	private VersionTrackingManager  versionTrackingManager;
+	private DocumentManager documentManager;
 	
 	
-	public EditCommand( LatexEditorView latexEditorView) {
-		super();
-		this.latexEditorView = latexEditorView;
+	public EditCommand() {
+		latexEditorController = LatexEditorController.getInstance();
+		versionTrackingManager = VersionTrackingManager.getInstance();
+		documentManager = DocumentManager.getInstance();
 	}
 
 
 	@Override
 	public void execute() {
-		//latexEditorView.saveContents();
+		documentManager.setEditedContents(latexEditorController.getEditorPane().getText());
 		if(versionTrackingManager.isEnabled()) {
-			versionTrackingManager.putVersion(currentDocument);
-			currentDocument.changeVersion();
+			versionTrackingManager.putVersion(documentManager.getCurrentDocument());
+			documentManager.getCurrentDocument().changeVersion();
 		}
-		currentDocument.setContents(text);
+		documentManager.getCurrentDocument().setContents(documentManager.getEditedContents());
 	}
 
 	

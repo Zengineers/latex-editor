@@ -9,9 +9,6 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 
 import controller.LatexEditorController;
-import model.VersionsManager;
-import model.strategies.VersionsStrategy;
-import model.strategies.VolatileVersionsStrategy;
 
 public class OpeningWindow {
 
@@ -37,13 +34,13 @@ public class OpeningWindow {
 	
 	
 	private JFrame frame;
-	private LatexEditorView latexEditorView;
+	private LatexEditorController latexEditorController;
 	private ChooseTemplate chooseTemplate;
 	private JButton btCreateNewDocument;
 	private JButton btOpenExistingDocument;
 	private JButton btnExit;
 	
-	public LatexEditorView getLatexEditorView() { return latexEditorView; }
+	public LatexEditorController getLatexEditorController() { return latexEditorController; }	
 	public JButton getBtCreateNewDocument() { return btCreateNewDocument; }
 	public ChooseTemplate getChooseTemplate() { return chooseTemplate; }
 
@@ -62,18 +59,14 @@ public class OpeningWindow {
 	}
 
 	public OpeningWindow() {
-		initializeLatexEditorView();
+		initializeController();
 		initializeFrame();
 		frame.setVisible(true);
 	}
 	
-	private void initializeLatexEditorView() {
-		latexEditorView = new LatexEditorView();
-		VersionsStrategy versionsStrategy = new VolatileVersionsStrategy();
-		VersionsManager versionsManager = new VersionsManager(versionsStrategy, latexEditorView);
-		LatexEditorController controller = new LatexEditorController(versionsManager, latexEditorView);
-		latexEditorView.setController(controller);
-		latexEditorView.setVersionsManager(versionsManager);
+	private void initializeController() {
+		latexEditorController = LatexEditorController.getInstance();
+		latexEditorController.createCommands();
 	}
 
 	private void initializeFrame() {
@@ -92,7 +85,7 @@ public class OpeningWindow {
 		btCreateNewDocument = new JButton("Create New Document");
 		btCreateNewDocument.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				chooseTemplate = new ChooseTemplate(latexEditorView, "opening");
+				chooseTemplate = new ChooseTemplate("opening");
 				frame.dispose();
 			}
 		});
