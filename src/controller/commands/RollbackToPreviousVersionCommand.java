@@ -1,12 +1,12 @@
 package controller.commands;
 
-import model.VersionsManager;
+import model.VersionTrackingManager;
 
 public class RollbackToPreviousVersionCommand implements Command {
-	private VersionsManager versionsManager;
+	private VersionTrackingManager versionsManager;
 	
 	
-	public RollbackToPreviousVersionCommand(VersionsManager versionsManager) {
+	public RollbackToPreviousVersionCommand(VersionTrackingManager versionsManager) {
 		this.versionsManager = versionsManager;
 	}
 

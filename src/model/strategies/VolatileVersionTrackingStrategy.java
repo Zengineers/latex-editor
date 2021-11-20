@@ -5,10 +5,10 @@ import java.util.List;
 
 import model.Document;
 
-public class VolatileVersionsStrategy implements VersionsStrategy {
+public class VolatileVersionTrackingStrategy implements VersionTrackingStrategy {
 	private ArrayList<Document> history;
 	
-	public VolatileVersionsStrategy() {
+	public VolatileVersionTrackingStrategy() {
 		super();
 		history = new ArrayList<Document>();
 	}

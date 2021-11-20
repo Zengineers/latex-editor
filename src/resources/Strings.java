@@ -8,8 +8,7 @@ public class Strings {
 	private static String BUNDLE_NAME ;
 	private static ResourceBundle RESOURCE_BUNDLE;
 
-	private Strings() {
-	}
+	private Strings() {}
 	
 	public static String getTemplate(String key) {
 		BUNDLE_NAME = "resources.templates";

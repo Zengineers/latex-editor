@@ -1,12 +1,12 @@
 package controller.commands;
 
-import model.VersionsManager;
+import model.VersionTrackingManager;
 
 public class DisableVersionsManagementCommand implements Command {
 
-	private VersionsManager versionsManager;
+	private VersionTrackingManager versionsManager;
 	
-	public DisableVersionsManagementCommand(VersionsManager versionsManager) {
+	public DisableVersionsManagementCommand(VersionTrackingManager versionsManager) {
 		super();
 		this.versionsManager = versionsManager;
 	}

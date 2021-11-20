@@ -1,22 +1,20 @@
 package controller.commands;
 
-import java.util.HashMap;
-
 import model.DocumentManager;
-import model.VersionsManager;
+import model.VersionTrackingManager;
 import view.LatexEditorView;
 
 public class CommandFactory {
 	private DocumentManager documentManager;
-	private VersionsManager versionsManager;
+	private VersionTrackingManager versionsManager;
 	private LatexEditorView latexEditorView;
 	
 	
-	public CommandFactory(VersionsManager versionsManager, LatexEditorView latexEditorView) {
+	public CommandFactory(VersionTrackingManager versionsManager, LatexEditorView latexEditorView) {
 		super();
 		this.latexEditorView = latexEditorView;
 		this.versionsManager = versionsManager;
-		documentManager = new DocumentManager();
+		documentManager = DocumentManager.getInstance();
 	}
 
 

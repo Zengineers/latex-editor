@@ -1,11 +1,11 @@
 package controller.commands;
 
-import model.VersionsManager;
+import model.VersionTrackingManager;
 
 public class ChangeVersionsStrategyCommand implements Command {
-	private VersionsManager versionsManager;
+	private VersionTrackingManager versionsManager;
 	
-	public ChangeVersionsStrategyCommand(VersionsManager versionsManager) {
+	public ChangeVersionsStrategyCommand(VersionTrackingManager versionsManager) {
 		super();
 		this.versionsManager = versionsManager;
 	}

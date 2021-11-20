@@ -1,9 +1,11 @@
 package controller.commands;
 
+import model.VersionTrackingManager;
 import view.LatexEditorView;
 
 public class EditCommand implements Command {
 	private LatexEditorView latexEditorView;
+	private VersionTrackingManager  versionTrackingManager;
 	
 	
 	public EditCommand( LatexEditorView latexEditorView) {
@@ -14,7 +16,13 @@ public class EditCommand implements Command {
 
 	@Override
 	public void execute() {
-		latexEditorView.saveContents();
+		//latexEditorView.saveContents();
+		if(versionTrackingManager.isEnabled()) {
+			versionTrackingManager.putVersion(currentDocument);
+			currentDocument.changeVersion();
+		}
+		currentDocument.setContents(text);
 	}
 
+	
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 import model.Document;
 
-public interface VersionsStrategy {
+public interface VersionTrackingStrategy {
 	public void putVersion(Document document);
 	public Document getVersion();
 	public void setEntireHistory(List<Document> documents);

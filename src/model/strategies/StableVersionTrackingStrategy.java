@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 import model.Document;
 
-public class StableVersionsStrategy implements VersionsStrategy{
+public class StableVersionTrackingStrategy implements VersionTrackingStrategy{
 	private String versionID = "";
 	@Override
 	public void putVersion(Document document) {

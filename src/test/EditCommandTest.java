@@ -8,7 +8,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
 import controller.LatexEditorController;
-import model.VersionsManager;
+import model.VersionTrackingManager;
 import view.LatexEditorView;
 import view.MainWindow;
 

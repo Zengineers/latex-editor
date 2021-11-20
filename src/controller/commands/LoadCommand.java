@@ -1,6 +1,6 @@
 package controller.commands;
 
-import model.VersionsManager;
+import model.VersionTrackingManager;
 import view.LatexEditorView;
 
 public class LoadCommand implements Command {

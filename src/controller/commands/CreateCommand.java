@@ -2,15 +2,15 @@ package controller.commands;
 
 import model.Document;
 import model.DocumentManager;
-import model.VersionsManager;
+import model.VersionTrackingManager;
 import view.LatexEditorView;
 
 public class CreateCommand implements Command {
 	private DocumentManager documentManager;
-	private VersionsManager versionsManager;
+	private VersionTrackingManager versionsManager;
 	private LatexEditorView latexEditorView;
 	
-	public CreateCommand(DocumentManager documentManager, VersionsManager versionsManager, LatexEditorView latexEditorView) {
+	public CreateCommand(DocumentManager documentManager, VersionTrackingManager versionsManager, LatexEditorView latexEditorView) {
 		super();
 		this.documentManager = documentManager;
 		this.versionsManager = versionsManager;
