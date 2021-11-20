@@ -1,27 +1,27 @@
 package controller.commands;
 
 import model.VersionsManager;
+import view.LatexEditorView;
 
 public class LoadCommand implements Command {
-	private VersionsManager versionsManager;
+	private LatexEditorView latexEditorView;
 	
-	public LoadCommand(VersionsManager versionsManager) {
+	public LoadCommand(LatexEditorView latexEditorView) {
 		super();
-		this.versionsManager = versionsManager;
+		this.latexEditorView = latexEditorView;
 	}
 
-	public VersionsManager getVersionsManager() {
-		return versionsManager;
-	}
-
-	public void setVersionsManager(VersionsManager versionsManager) {
-		this.versionsManager = versionsManager;
-	}
+//	public VersionsManager getVersionsManager() {
+//		return versionsManager;
+//	}
+//
+//	public void setVersionsManager(VersionsManager versionsManager) {
+//		this.versionsManager = versionsManager;
+//	}
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-		versionsManager.loadFromFile();
+		latexEditorView.loadFromFile();
 	}
 
 }

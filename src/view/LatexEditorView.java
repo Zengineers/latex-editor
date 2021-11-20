@@ -62,7 +62,6 @@ public class LatexEditorView {
 		currentDocument.setContents(text);
 	}
 	public void saveToFile() {
-		// TODO Auto-generated method stub
 		currentDocument.save(filename);
 	}
 	public String getFilename() {

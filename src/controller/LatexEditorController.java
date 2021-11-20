@@ -14,6 +14,7 @@ import controller.commands.LoadCommand;
 import controller.commands.RollbackToPreviousVersionCommand;
 import controller.commands.SaveCommand;
 import model.VersionsManager;
+import view.LatexEditorView;
 
 public class LatexEditorController{
 	
@@ -26,8 +27,8 @@ public class LatexEditorController{
 			"save" 
 	};
 	
-	public LatexEditorController(VersionsManager versionsManager) {
-		CommandFactory commandFactory = new CommandFactory(versionsManager);
+	public LatexEditorController(VersionsManager versionsManager, LatexEditorView latexEditorView) {
+		CommandFactory commandFactory = new CommandFactory(versionsManager, latexEditorView);
 		
 		for (String name : commandNames) {
 			commands.put(name, commandFactory.createCommand(name));

@@ -1,21 +1,22 @@
 package controller.commands;
 
 import model.VersionsManager;
+import view.LatexEditorView;
 
 public class AddLatexCommand implements Command  {
-	private VersionsManager versionsManager;
+	private LatexEditorView latexEditorView;
 	
 	
-	public AddLatexCommand(VersionsManager versionsManager) {
+	
+	public AddLatexCommand(LatexEditorView latexEditorView) {
 		super();
-		this.versionsManager = versionsManager;
+		this.latexEditorView = latexEditorView;
 	}
 
 
 	@Override
 	public void execute() {
-		// TODO Auto-generated method stub
-		versionsManager.saveContents();
+		latexEditorView.saveContents();
 	}
 
 }

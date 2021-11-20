@@ -125,8 +125,6 @@ public class MainWindow {
 				latexEditorView.getController().enact("disableVersionsManagement");
 				updateCheckBoxes("disable");
 			}
-
-			
 		});
 		mnDocument.add(miDisableVersionTracking);
 	}
@@ -299,7 +297,7 @@ public class MainWindow {
 		miNewFile = new JMenuItem("New");
 		miNewFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				ChooseTemplate chooseTemplate = new ChooseTemplate(latexEditorView, "main");
+				new ChooseTemplate(latexEditorView, "main");
 				frame.dispose();
 			}
 		});
