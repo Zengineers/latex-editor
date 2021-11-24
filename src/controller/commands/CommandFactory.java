@@ -3,31 +3,31 @@ package controller.commands;
 public class CommandFactory {	
 	
 	public Command createCommand(String type) {
-		if(type.equals("addLatex")) {
+		if (type.equals("addLatex")) {
 			return new AddLatexCommand();
 		}
-		if(type.equals("changeVersionsStrategy")) {
-			return new ChangeVersionsStrategyCommand();
+		if (type.equals("changeVersionTrackingStrategy")) {
+			return new ChangeVersionTrackingStrategyCommand();
 		}
-		if(type.equals("create")) {
+		if (type.equals("create")) {
 			return new CreateCommand();
 		}
-		if(type.equals("disableVersionsManagement")) {
-			return new DisableVersionsManagementCommand();
+		if (type.equals("disableVersionTracking")) {
+			return new DisableVersionTrackingCommand();
 		}
-		if(type.equals("edit")) {
+		if (type.equals("edit")) {
 			return new EditCommand();
 		}
-		if(type.equals("enableVersionsManagement")) {
-			return new EnableVersionsManagementCommand();
+		if (type.equals("enableVersionTracking")) {
+			return new EnableVersionTrackingCommand();
 		}
-		if(type.equals("load")) {
+		if (type.equals("load")) {
 			return new LoadCommand();
 		}
-		if(type.equals("rollbackToPreviousVersion")) {
-			return new RollbackToPreviousVersionCommand();
+		if (type.equals("rollback")) {
+			return new RollbackCommand();
 		}
-		if(type.equals("save")) {
+		if (type.equals("save")) {
 			return new SaveCommand();
 		}
 		return null;

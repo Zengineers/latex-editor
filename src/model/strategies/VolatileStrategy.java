@@ -5,24 +5,22 @@ import java.util.List;
 
 import model.Document;
 
-public class VolatileVersionTrackingStrategy implements VersionTrackingStrategy {
+public class VolatileStrategy implements VersionTrackingStrategy {
 	private ArrayList<Document> history;
 	
-	public VolatileVersionTrackingStrategy() {
+	public VolatileStrategy() {
 		super();
 		history = new ArrayList<Document>();
 	}
 
 	@Override
 	public void putVersion(Document document) {
-		// TODO Auto-generated method stub
 		Document doc = document.clone();
 		history.add(doc);
 	}
 
 	@Override
 	public Document getVersion() {
-		// TODO Auto-generated method stub
 		if(history.size() == 0)
 			return null;
 		return history.get(history.size() - 1);
@@ -30,21 +28,22 @@ public class VolatileVersionTrackingStrategy implements VersionTrackingStrategy 
 
 	@Override
 	public void setEntireHistory(List<Document> documents) {
-		// TODO Auto-generated method stub
 		history.clear();
 		history.addAll(documents);
 	}
 
 	@Override
 	public List<Document> getEntireHistory() {
-		// TODO Auto-generated method stub
 		return history;
 	}
 
 	@Override
 	public void removeVersion() {
-		// TODO Auto-generated method stub
 		history.remove(history.size() - 1);
 	}
 
+	@Override
+	public void clearHistory() {
+		history.clear();
+	}
 }

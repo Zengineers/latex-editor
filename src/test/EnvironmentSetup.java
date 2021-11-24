@@ -3,6 +3,9 @@ package test;
 import javax.swing.JMenuItem;
 
 import controller.LatexEditorController;
+import model.strategies.StableStrategy;
+import model.strategies.VersionTrackingStrategy;
+import model.strategies.VolatileStrategy;
 import view.ChooseTemplate;
 import view.MainWindow;
 import view.OpeningWindow;
@@ -56,6 +59,17 @@ public class EnvironmentSetup {
 			miCommand.doClick();
 	}
 	
+	protected static void clickStrategyMenuItem(String versionTrackingStrategy) {
+		if (versionTrackingStrategy.equals("volatile")) {
+			if (mainWindow.getCbmiVolatileStrategy().isEnabled())
+				mainWindow.getCbmiVolatileStrategy().doClick();
+		}
+		else if (versionTrackingStrategy.equals("stable")) {
+			if (mainWindow.getCbmiStableStrategy().isEnabled())
+				mainWindow.getCbmiStableStrategy().doClick();
+		}
+	}
+	
 	private static JMenuItem getLatexCommandMenuItem(String latexCommandType) {
 		if (latexCommandType.equals("chapter")) {
 			return mainWindow.getMiChapter();
@@ -84,6 +98,31 @@ public class EnvironmentSetup {
 		return null;
 	}
 
+	protected static boolean evaluateClassInstance(VersionTrackingStrategy versionTrackingStrategy, String strategyType) {
+		if (strategyType.equals("volatile")) {
+			return versionTrackingStrategy instanceof VolatileStrategy;
+		}
+		if (strategyType.equals("stable")) {
+			return versionTrackingStrategy instanceof StableStrategy;
+		}
+		return false;
+	}
+	
+	protected static String addTextToMainWindowEditorPane(String inputText) {
+		String contents = mainWindow.getEditorPane().getText();
+		int caretPosition = getRandomNumber(0, contents.length());
+		String before = contents.substring(0, caretPosition);
+		String after = contents.substring(caretPosition);
+		
+		contents = before + "\n" + inputText + "\n" + after;
+		mainWindow.getEditorPane().setText(contents);
+		return contents;
+	}
+	
+	private static int getRandomNumber(int min, int max) {
+	    return (int) ((Math.random() * (max - min)) + min);
+	}
+	
 	protected static void cleanUp() {
 		if (openingWindow != null) openingWindow.disposeFrame();
 		if (chooseTemplate != null) chooseTemplate.disposeFrame();

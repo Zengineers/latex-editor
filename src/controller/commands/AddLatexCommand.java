@@ -9,14 +9,10 @@ import resources.Strings;
 
 public class AddLatexCommand implements Command  {
 	private LatexEditorController latexEditorController;
-	private VersionTrackingManager versionTrackingManager;
-	private DocumentManager documentManager;
 	
 	
 	public AddLatexCommand() {
 		latexEditorController = LatexEditorController.getInstance();
-		versionTrackingManager = VersionTrackingManager.getInstance();
-		documentManager = DocumentManager.getInstance();
 	}
 
 
@@ -28,7 +24,6 @@ public class AddLatexCommand implements Command  {
 		String newContents = determineNewContents(editorPane, commandType);
 
 		latexEditorController.getDocumentManager().setEditedContents(editorPane.getText());
-		latexEditorController.enact("edit");
 		
 		editorPane.setText(newContents);
 		editorPane.setCaretPosition(newCaretPosition);

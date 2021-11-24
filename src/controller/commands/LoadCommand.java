@@ -27,7 +27,6 @@ public class LoadCommand implements Command {
 		latexEditorController.setTemplateType(templateType);
 		documentManager.setCurrentDocument(new Document());
 		documentManager.getCurrentDocument().setContents(fileContents);
-		
 	}
 
 

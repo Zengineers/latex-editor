@@ -13,7 +13,6 @@ import javax.swing.JMenuItem;
 import javax.swing.JScrollPane;
 
 import controller.LatexEditorController;
-import model.Document;
 
 public class MainWindow {
 
@@ -47,6 +46,7 @@ public class MainWindow {
 	private JMenuItem miSave;
 	private JMenuItem miLoadFile;
 	private JMenuItem miSaveAs;
+	private JFileChooser fileChooser;
 	private JMenuItem miExit;
 	private JMenu mnCommands;
 	private JMenuItem miChapter;
@@ -75,7 +75,13 @@ public class MainWindow {
 	public JMenuItem getMiEnumerateList() { return miEnumerateList; }
 	public JMenuItem getMiTable() { return miTable; }
 	public JMenuItem getMiFigure() { return miFigure; }
-
+	public JCheckBoxMenuItem getCbmiVolatileStrategy() { return cbmiVolatileStrategy;	}
+	public JCheckBoxMenuItem getCbmiStableStrategy() { return cbmiStableStrategy; }
+	public JMenuItem getMiDisableVersionTracking() { return miDisableVersionTracking; }
+	public JMenuItem getMiRollback() { return miRollback; }
+	public JMenuItem getMiSaveAs() { return miSaveAs; }
+	public JFileChooser getFileChooser() { return fileChooser; }
+	
 	
 	public MainWindow() {
 		latexEditorController = LatexEditorController.getInstance();
@@ -111,7 +117,7 @@ public class MainWindow {
 		miDisableVersionTracking = new JMenuItem("Disable Version Tracking");
 		miDisableVersionTracking.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				latexEditorController.enact("disableVersionsManagement");
+				latexEditorController.enact("disableVersionTracking");
 				updateCheckBoxes("disable");
 			}
 		});
@@ -143,10 +149,10 @@ public class MainWindow {
 			public void actionPerformed(ActionEvent e) {
 				latexEditorController.getVersionTrackingManager().setStrategyType(strategyType);
 				if(latexEditorController.getVersionTrackingManager().isEnabled() == false) {
-					latexEditorController.enact("enableVersionsManagement");
+					latexEditorController.enact("enableVersionTracking");
 				}
 				else {
-					latexEditorController.enact("changeVersionsStrategy");
+					latexEditorController.enact("changeVersionTrackingStrategy");
 				}
 				updateCheckBoxes(strategyType);
 			}
@@ -176,9 +182,7 @@ public class MainWindow {
 		miRollback = new JMenuItem("Rollback");
 		miRollback.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				latexEditorController.enact("rollbackToPreviousVersion");
-				Document doc = latexEditorController.getDocumentManager().getCurrentDocument();
-				editorPane.setText(doc.getContents());
+				latexEditorController.enact("rollback");
 			}
 		});
 		mnEdit.add(miRollback);
@@ -246,17 +250,16 @@ public class MainWindow {
 		miSaveAs = new JMenuItem("Save As...");
 		miSaveAs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				JFileChooser filechooser = new JFileChooser();
-				int option = filechooser.showSaveDialog(null);
+				fileChooser = new JFileChooser();
+				int option = fileChooser.showSaveDialog(null);
 				if(option == JFileChooser.APPROVE_OPTION) {
-					String filename = filechooser.getSelectedFile().toString();
+					String filename = fileChooser.getSelectedFile().toString();
 					if(filename.endsWith(".tex") == false) {
 						filename = filename+".tex";
 					}
 					latexEditorController.setFilename(filename);
 					latexEditorController.enact("save");
 				}
-				
 			}
 		});
 		mnFile.add(miSaveAs);
@@ -266,14 +269,14 @@ public class MainWindow {
 		miLoadFile = new JMenuItem("Open...");
 		miLoadFile.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser filechooser = new JFileChooser();
+				JFileChooser filechooser = new JFileChooser(System.getProperty("user.dir"));
 				int option = filechooser.showOpenDialog(null);
 				if(option == JFileChooser.APPROVE_OPTION) {
 					String filename = filechooser.getSelectedFile().toString();
 					latexEditorController.setFilename(filename);
 					latexEditorController.enact("load");
 					setDisabledCommandsMenuItems();
-					String contents =  latexEditorController.getDocumentManager().getCurrentDocument().getContents();
+					String contents = latexEditorController.getDocumentManager().getCurrentDocument().getContents();
 					editorPane.setText(contents);
 				}
 			}

@@ -2,11 +2,11 @@ package controller.commands;
 
 import model.VersionTrackingManager;
 
-public class ChangeVersionsStrategyCommand implements Command {
+public class ChangeVersionTrackingStrategyCommand implements Command {
 	private VersionTrackingManager  versionTrackingManager;
 	
 	
-	public ChangeVersionsStrategyCommand() {
+	public ChangeVersionTrackingStrategyCommand() {
 		versionTrackingManager = VersionTrackingManager.getInstance();
 	}
 

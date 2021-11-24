@@ -19,13 +19,13 @@ public class LatexEditorController{
 	private String templateType;
 	private String commandType;
 	private String filename;
-	
+
 	private HashMap<String, Command> commands =  new HashMap<String, Command>();
 	private String[] commandNames = { 
-			"addLatex", "changeVersionsStrategy", 
-			"create", "disableVersionsManagement",
-			"edit", "enableVersionsManagement", 
-			"load", "rollbackToPreviousVersion", 
+			"addLatex", "changeVersionTrackingStrategy", 
+			"create", "disableVersionTracking",
+			"edit", "enableVersionTracking", 
+			"load", "rollback", 
 			"save" 
 	};
 	
@@ -90,5 +90,5 @@ public class LatexEditorController{
 	public void setCommandType(String commandType) {
 		this.commandType = commandType;
 	}
-
+	
 }

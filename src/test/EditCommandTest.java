@@ -34,8 +34,7 @@ class EditCommandTest extends EnvironmentSetup {
 		selectTemplateRadioButton(templateType);
 		setUpMainWindow();
 		
-		expectedContents = estimateExpectedContents(inputText);
-		mainWindow.getEditorPane().setText(expectedContents);
+		expectedContents = addTextToMainWindowEditorPane(inputText);	
 		mainWindow.getMiSave().doClick();	
 		
 		String documentContents = latexEditorController.getDocumentManager().getCurrentDocument().getContents();
@@ -45,35 +44,6 @@ class EditCommandTest extends EnvironmentSetup {
 		assertEquals(editorPaneContents, expectedContents);
 	}
 
-	private String estimateExpectedContents(String inputText) {
-		expectedContents = mainWindow.getEditorPane().getText();
-		
-		addInputText(inputText);
-		removeRandomChar();
-		return expectedContents;
-	}
-
-	private void removeRandomChar() {
-		if (expectedContents.isEmpty())
-			return;
-		
-		int caretPosition = getRandomNumber(0, expectedContents.length());
-		String before = expectedContents.substring(0, caretPosition);
-		String after = expectedContents.substring(caretPosition+1);
-
-		expectedContents = before + after;
-	}
-
-	private void addInputText(String inputText) {
-		int caretPosition = getRandomNumber(0, expectedContents.length());
-		String before = expectedContents.substring(0, caretPosition);
-		String after = expectedContents.substring(caretPosition);
-		
-		expectedContents =  before + "\n" + inputText + "\n" + after;
-	}
 	
-	private int getRandomNumber(int min, int max) {
-	    return (int) ((Math.random() * (max - min)) + min);
-	}
 	
 }

@@ -2,20 +2,25 @@ package model;
 
 import javax.swing.JOptionPane;
 
-import model.strategies.StableVersionTrackingStrategy;
+import model.strategies.StableStrategy;
+import model.strategies.StrategyFactory;
 import model.strategies.VersionTrackingStrategy;
-import model.strategies.VolatileVersionTrackingStrategy;
+import model.strategies.VolatileStrategy;
 
 public class VersionTrackingManager {
 	private static VersionTrackingManager instance = null;
 
 	private VersionTrackingStrategy versionTrackingStrategy;
+	private StrategyFactory strategyFactory;
 	private DocumentManager documentManager;
 	private boolean isEnabled;
+	private boolean isRollbackSuccessful;
 	private String strategyType;
 
+
 	private VersionTrackingManager() {
-		versionTrackingStrategy = new VolatileVersionTrackingStrategy();
+		strategyFactory = new StrategyFactory();
+		versionTrackingStrategy = strategyFactory.createStrategy("volatileStrategy");
 		documentManager = DocumentManager.getInstance();
 	}
 	
@@ -40,7 +45,11 @@ public class VersionTrackingManager {
 	public VersionTrackingStrategy getStrategy() {
 		return versionTrackingStrategy;
 	}
-	
+
+	public boolean isRollbackSuccessful() {
+		return isRollbackSuccessful;
+	}
+
 	public boolean isEnabled() {
 		return isEnabled;
 	}
@@ -58,56 +67,75 @@ public class VersionTrackingManager {
 	}
 	
 	public void enableStrategy() {
-		if(strategyType.equals("volatile") && versionTrackingStrategy instanceof VolatileVersionTrackingStrategy) {
+		if(isVolatileType() && isVolatileInstance()) {
 			enable();
 		}
-		else if(strategyType.equals("stable") && versionTrackingStrategy instanceof VolatileVersionTrackingStrategy) {
-			VersionTrackingStrategy newStrategy = new StableVersionTrackingStrategy();
-			newStrategy.setEntireHistory(versionTrackingStrategy.getEntireHistory());
-			versionTrackingStrategy = newStrategy;
+		else if(isStableType() && isVolatileInstance()) {
+			copyHistoryFromPreviousStrategy("stableStrategy");
 			enable();
 		}
-		else if(strategyType.equals("volatile") && versionTrackingStrategy instanceof StableVersionTrackingStrategy) {
-			VersionTrackingStrategy newStrategy = new VolatileVersionTrackingStrategy();
-			newStrategy.setEntireHistory(versionTrackingStrategy.getEntireHistory());
-			versionTrackingStrategy = newStrategy;
+		else if(isVolatileType() && isStableInstance()) {
+			copyHistoryFromPreviousStrategy("volatileStrategy");
 			enable();
 		}
-		else if(strategyType.equals("stable") && versionTrackingStrategy instanceof StableVersionTrackingStrategy) {
+		else if(isStableType() && isStableInstance()) {
 			enable();
 		}
 	}
 
 	public void changeStrategy() {
-		//String strategyType = latexEditorView.getStrategy();
-		if(strategyType.equals("stable") && versionTrackingStrategy instanceof VolatileVersionTrackingStrategy) {
-			VersionTrackingStrategy newStrategy = new StableVersionTrackingStrategy();
-			newStrategy.setEntireHistory(versionTrackingStrategy.getEntireHistory());
-			versionTrackingStrategy = newStrategy;
+		if(isStableType() && isVolatileInstance()) {
+			copyHistoryFromPreviousStrategy("stableStrategy");
 			enable();
 		}
-		else if(strategyType.equals("volatile") && versionTrackingStrategy instanceof StableVersionTrackingStrategy) {
-			VersionTrackingStrategy newStrategy = new VolatileVersionTrackingStrategy();
-			newStrategy.setEntireHistory(versionTrackingStrategy.getEntireHistory());
-			versionTrackingStrategy = newStrategy;
+		else if(isVolatileType() && isStableInstance()) {
+			copyHistoryFromPreviousStrategy("volatileStrategy");
 			enable();
 		}
 	}
 
 	public void rollback() {
-		if(isEnabled() == false) {
-			JOptionPane.showMessageDialog(null, "Strategy is not enabled", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+		isRollbackSuccessful = false;
+		if(!isEnabled) {
+			showMessageDialog("Strategy is not enabled");
 		}
 		else {
-			Document doc = versionTrackingStrategy.getVersion();
-			if(doc == null) {
-				JOptionPane.showMessageDialog(null, "No version available", "InfoBox", JOptionPane.INFORMATION_MESSAGE);
+			Document previousDocumentVersion = versionTrackingStrategy.getVersion();
+			if(previousDocumentVersion == null) {
+				showMessageDialog("No version available");
 			}
 			else {
+				isRollbackSuccessful = true;
+				documentManager.setCurrentDocument(previousDocumentVersion);
 				versionTrackingStrategy.removeVersion();
-				documentManager.setCurrentDocument(doc);
 			}
 		}
+	}
+	
+	private void copyHistoryFromPreviousStrategy(String newStrategyType) {
+		VersionTrackingStrategy newStrategy = strategyFactory.createStrategy(newStrategyType);
+		newStrategy.setEntireHistory(versionTrackingStrategy.getEntireHistory());
+		versionTrackingStrategy = newStrategy;
+	}
+	
+	private boolean isStableInstance() {
+		return versionTrackingStrategy instanceof StableStrategy;
+	}
+
+	private boolean isVolatileInstance() {
+		return versionTrackingStrategy instanceof VolatileStrategy;
+	}
+
+	private boolean isStableType() {
+		return strategyType.equals("stable");
+	}
+
+	private boolean isVolatileType() {
+		return strategyType.equals("volatile");
+	}
+	
+	private void showMessageDialog(String message) {
+		JOptionPane.showMessageDialog(null, message, "InfoBox", JOptionPane.INFORMATION_MESSAGE);
 	}
 	
 }

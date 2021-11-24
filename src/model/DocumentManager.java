@@ -48,4 +48,7 @@ public class DocumentManager {
 		this.editedContents = editedContents;
 	}
 	
+	public void dispose() {
+		instance = null;
+	}
 }

@@ -10,4 +10,5 @@ public interface VersionTrackingStrategy {
 	public void setEntireHistory(List<Document> documents);
 	public List<Document> getEntireHistory();
 	public void removeVersion();
+	public void clearHistory();
 }

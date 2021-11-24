@@ -2,11 +2,11 @@ package controller.commands;
 
 import model.VersionTrackingManager;
 
-public class DisableVersionsManagementCommand implements Command {
+public class DisableVersionTrackingCommand implements Command {
 	private VersionTrackingManager versionTrackingManager;
 	
 	
-	public DisableVersionsManagementCommand() {
+	public DisableVersionTrackingCommand() {
 		versionTrackingManager = VersionTrackingManager.getInstance();
 	}
 
@@ -14,6 +14,7 @@ public class DisableVersionsManagementCommand implements Command {
 	@Override
 	public void execute() {
 		versionTrackingManager.disable();
+//		versionTrackingManager.getStrategy().clearHistory();
 	}
 
 }

@@ -97,8 +97,15 @@ public class OpeningWindow {
 		btOpenExistingDocument = new JButton("Open Existing Document");
 		btOpenExistingDocument.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JFileChooser chooser = new JFileChooser();
-				chooser.showOpenDialog(null);
+				JFileChooser filechooser = new JFileChooser(System.getProperty("user.dir"));
+				int option = filechooser.showOpenDialog(null);
+				if(option == JFileChooser.APPROVE_OPTION) {
+					String filename = filechooser.getSelectedFile().toString();
+					latexEditorController.setFilename(filename);
+					latexEditorController.enact("load");
+					new MainWindow();
+					frame.dispose();
+				}
 			}
 		});
 		btOpenExistingDocument.setBounds(OPEN_BT_X, OPEN_BT_Y, BT_WIDTH, BT_HEIGHT);
