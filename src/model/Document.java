@@ -57,7 +57,5 @@ public class Document {
 		int n = Integer.parseInt(versionID);
 		versionID = (n + 1) + "";
 	}
-
-
 	
 }

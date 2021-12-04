@@ -47,6 +47,10 @@ public class MainWindow {
 	private JMenuItem miLoadFile;
 	private JMenuItem miSaveAs;
 	private JFileChooser fileChooser;
+	private JMenu mnImport;
+	private JMenuItem miImportHtml;
+	private JMenu mnExport;
+	private JMenuItem miExportHtml;
 	private JMenuItem miExit;
 	private JMenu mnCommands;
 	private JMenuItem miChapter;
@@ -246,11 +250,57 @@ public class MainWindow {
 		mnFile.add(miExit);
 	}
 	
+	private void addHtmlMenuItemToExportMenu() {
+		miExportHtml = new JMenuItem("HTML");
+		miExportHtml.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser filechooser = new JFileChooser(System.getProperty("user.dir"));
+				int option = filechooser.showSaveDialog(null);
+				if (option == JFileChooser.APPROVE_OPTION) {
+					String filename = filechooser.getSelectedFile().toString();
+					if (filename.endsWith(".html") == false) {
+						filename += ".html";
+					}
+					latexEditorController.setFilename(filename);
+					latexEditorController.enact("exportHtml");
+				}
+			}
+		});
+		mnExport.add(miExportHtml);
+	}
+	
+	private void addExportMenuToFileMenu() {
+		mnExport = new JMenu("Export");
+		mnFile.add(mnExport);
+		addHtmlMenuItemToExportMenu();
+	}
+	
+	private void addHtmlMenuItemToImportMenu() {
+		miImportHtml = new JMenuItem("HTML");
+		miImportHtml.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JFileChooser filechooser = new JFileChooser(System.getProperty("user.dir"));
+				int option = filechooser.showOpenDialog(null);
+				if (option == JFileChooser.APPROVE_OPTION) {
+					String filename = filechooser.getSelectedFile().toString();
+					System.out.println(filename);
+				}
+			}
+		});
+		mnImport.add(miImportHtml);
+	}
+	
+	private void addImportMenuToFileMenu() {
+		mnImport = new JMenu("Import");
+		mnFile.add(mnImport);
+		addHtmlMenuItemToImportMenu();
+	}
+
 	private void addSaveAsMenuItemToFileMenu() {
 		miSaveAs = new JMenuItem("Save As...");
 		miSaveAs.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				fileChooser = new JFileChooser();
+				fileChooser = new JFileChooser(System.getProperty("user.dir"));
 				int option = fileChooser.showSaveDialog(null);
 				if(option == JFileChooser.APPROVE_OPTION) {
 					String filename = fileChooser.getSelectedFile().toString();
@@ -315,9 +365,12 @@ public class MainWindow {
 		addSaveMenuItemToFileMenu();
 		addSaveAsMenuItemToFileMenu();
 		mnFile.addSeparator();
+		addImportMenuToFileMenu();
+		addExportMenuToFileMenu();
+		mnFile.addSeparator();
 		addExitMenuItemToFileMenu();
 	}
-	
+
 	private void addEditMenuToMenuBar() {
 		mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);

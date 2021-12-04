@@ -1,7 +1,5 @@
 package model.strategies;
 
-import java.util.HashMap;
-
 public class StrategyFactory {
 	
 	public VersionTrackingStrategy createStrategy(String type) {

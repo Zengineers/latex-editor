@@ -26,7 +26,8 @@ public class LatexEditorController{
 			"create", "disableVersionTracking",
 			"edit", "enableVersionTracking", 
 			"load", "rollback", 
-			"save" 
+			"save", "exportHtml", 
+			"importHtml"
 	};
 	
 	private LatexEditorController() {

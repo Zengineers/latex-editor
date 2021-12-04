@@ -16,7 +16,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import model.DocumentManager;
 
-class SaveCommandTest extends EnvironmentSetup {
+class ExportHtmlCommandTest extends EnvironmentSetup {
 
 	@BeforeEach
 	void setUp() throws Exception {
@@ -31,31 +31,29 @@ class SaveCommandTest extends EnvironmentSetup {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"articleTemplate", "bookTemplate", 
-											"reportTemplate", "letterTemplate", 
-											"emptyTemplate"})
+											"reportTemplate", "letterTemplate"})
 	void testExecute(String templateType) throws IOException {
 		selectTemplateRadioButton(templateType);
-		setUpMainWindow();		
-
-		DocumentManager documentManager = latexEditorController.getDocumentManager();
-		String filename = simulateSaveAsMenuItemBehaviour(templateType);	
-		String documentContents = documentManager.getCurrentDocument().getContents();		
-		String savedFileContents = Files.readString(Path.of(filename));
-		File savedFile = new File(filename);
+		setUpMainWindow();
 		
-		assertEquals(savedFile.exists(), true);
-		assertEquals(savedFile.isDirectory(), false);
-		assertEquals(savedFileContents, documentContents);
+		DocumentManager documentManager = latexEditorController.getDocumentManager();
+		String filename = simulateExportHtmlMenuItemBehaviour(templateType);
+//		String documentContents = documentManager.getCurrentDocument().getContents();		
+//		String exportedFileContents = Files.readString(Path.of(filename));
+		File exportedFile = new File(filename);
+		
+		assertEquals(exportedFile.exists(), true);
+		assertEquals(exportedFile.isDirectory(), false);
+//		assertEquals(exportedFileContents, documentContents);
 	}
 
-	private String simulateSaveAsMenuItemBehaviour(String templateType) {
-		String filename = System.getProperty("user.dir") + "\\" + templateType + "TestFile.tex";
+	private String simulateExportHtmlMenuItemBehaviour(String templateType) {
+		String filename = System.getProperty("user.dir") + "\\" + templateType + "_html_export_test.html";
 		JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));		
 		chooser.setSelectedFile(new File(filename));	
 		chooser.approveSelection();
 		latexEditorController.setFilename(filename);
-		latexEditorController.enact("save");
+		latexEditorController.enact("exportHtml");
 		return filename;
 	}
-
 }

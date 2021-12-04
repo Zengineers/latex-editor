@@ -3,8 +3,6 @@ package controller.commands;
 import javax.swing.JEditorPane;
 
 import controller.LatexEditorController;
-import model.DocumentManager;
-import model.VersionTrackingManager;
 import resources.Strings;
 
 public class AddLatexCommand implements Command  {

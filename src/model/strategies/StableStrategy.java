@@ -3,10 +3,6 @@ package model.strategies;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -66,7 +62,6 @@ public class StableStrategy implements VersionTrackingStrategy{
 				Scanner scanner = new Scanner(new FileInputStream(i + ".tex"));
 				while(scanner.hasNextLine()) {
 					fileContents = fileContents + scanner.nextLine() + "\n";
-				scanner.close();
 				}
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
