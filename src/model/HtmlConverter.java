@@ -18,19 +18,10 @@ public class HtmlConverter {
 		String date = "";
 		String htmlContents = "<!DOCTYPE html>\n" +
 				"<style>\n" +
-//				"h1 {text-align: left;}\n" +
-//				"h2 {text-align: left;}\n" +
-//				"h3 {text-align: left;}\n" +
-//				"h4 {text-align: left;}\n" +
-//				"h5 {text-align: left;}\n" +
-//				"h6 {text-align: left;}\n" +
-				"p {text-align: left;}\n" +
-				"div {text-align: left; font-size:20px;}\n" +
-//				"li {text-align: left;}\n" +
-//				"ul {text-align: left;}\n" +
-//				".content { max-width: 500px; margin: auto; }" +
-//				"</style>\n <div class=\"content\">";
-				"</style>\n";
+				"div { text-align: center; font-size:20px; }\n" +
+				".content { text-align: center; margin: auto; }\n" +
+				"</style>\n" +
+				"\n<html class=\"content\">\n";
 		for (String line : lines) {
 			String[] words = splitLineToWords(line);
 			for (String word : words) {
@@ -40,10 +31,10 @@ public class HtmlConverter {
 					htmlContents += "<!--" + latexParams + "-->\n\n";	
 				}
 				else if (word.startsWith("\\begin{document}")) {
-					htmlContents += "<html>\n";
+					htmlContents += "<body class=\"content\">\n";
 				}
 				else if (word.startsWith("\\end{document}")) {
-					htmlContents += "</html>\n";
+					htmlContents += "</body>\n";
 				}
 				else if (word.startsWith("\\begin{abstract}")) {
 					htmlContents += "<div>\n";
@@ -54,6 +45,7 @@ public class HtmlConverter {
 				else if (word.startsWith("\\begin{letter}")) {
 					String letterHeader = getCommandParams("\\begin{letter}", words);
 					htmlContents += "<div>\n" + letterHeader + "<br><br>\n";
+					break;
 				}
 				else if (word.startsWith("\\end{letter}")) {
 					htmlContents += "</div>\n";
@@ -111,18 +103,22 @@ public class HtmlConverter {
 				else if (word.startsWith("\\signature")) {
 					String signature = getCommandParams("\\signature", words);
 					htmlContents += "<div> " + signature + " <div>\n";
+					break;
 				}
 				else if (word.startsWith("\\address")) {
 					String address = getCommandParams("\\address", words);
 					htmlContents += "<div> " + address + " <div>\n";
+					break;
 				}
 				else if (word.startsWith("\\opening")) {
 					String opening = getCommandParams("\\opening", words);
 					htmlContents += "<br><div> " + opening + " <div><br>\n";
+					break;
 				}
 				else if (word.startsWith("\\closing")) {
 					String closing = getCommandParams("\\closing", words);
 					htmlContents += "<br><div> " + closing + " <div><br>\n";
+					break;
 				}
 				else if (word.startsWith("\\ps")) {
 					continue;
@@ -130,6 +126,7 @@ public class HtmlConverter {
 				else if (word.startsWith("\\encl")) {
 					String encl = getCommandParams("\\encl", words);
 					htmlContents += "<br><div> " + encl + " <div><br>\n";
+					break;
 				}
 				else if (word.startsWith("\\begin{itemize}")) {
 					htmlContents += "<ul>\n";
@@ -140,6 +137,7 @@ public class HtmlConverter {
 				else if (word.startsWith("\\item")) {
 					String item = getCommandParams("\\item", words);
 					htmlContents += "<li> " + item + " </li>\n";
+					break;
 				}
 				else if (word.startsWith("\\begin{enumerate}")) {
 					htmlContents += "<ol>\n";
@@ -158,6 +156,7 @@ public class HtmlConverter {
 				else if (word.startsWith("\\caption")) {
 					String caption = getCommandParams("\\caption", words);
 					htmlContents += "<caption> " + caption + "</caption>\n";
+					break;
 				}
 				else if (word.startsWith("\\begin{tabular}")) {
 					htmlContents += "<tbody>\n";
@@ -206,7 +205,7 @@ public class HtmlConverter {
 				}
 			}
 		}
-		return htmlContents;
+		return htmlContents + "\n</html>\n";
 	}
 
 	private static String getCommandParams(String command, String[] words) {
