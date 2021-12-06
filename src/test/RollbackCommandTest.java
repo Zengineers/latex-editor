@@ -7,9 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-import java.awt.Robot;
-import java.awt.AWTException;
-
 import model.Document;
 
 class RollbackCommandTest extends EnvironmentSetup {

@@ -13,11 +13,9 @@ public class ExportHtmlCommand implements Command {
 	
 	
 	public ExportHtmlCommand() {
-//		documentManager = DocumentManager.getInstance();
+		documentManager = DocumentManager.getInstance();
 		latexEditorController = LatexEditorController.getInstance();
-		documentManager = latexEditorController.getDocumentManager();
-		converter = latexEditorController.getConverter();
-//		converter = Converter.getInstance();
+		converter = Converter.getInstance();
 	}
 	
 	
