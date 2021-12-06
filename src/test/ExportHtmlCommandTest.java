@@ -50,7 +50,7 @@ class ExportHtmlCommandTest extends EnvironmentSetup {
 	}
 
 	private String simulateExportHtmlMenuItemBehaviour(String templateType) {
-		String filename = System.getProperty("user.dir") + "\\" + templateType + "_html_export_test.html";
+		String filename = System.getProperty("user.dir") + "\\test_files\\html\\" + templateType + "_html_export_test.html";
 		JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));		
 		chooser.setSelectedFile(new File(filename));	
 		chooser.approveSelection();

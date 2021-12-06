@@ -14,7 +14,7 @@ public class StableStrategy implements VersionTrackingStrategy{
 	
 	@Override
 	public void putVersion(Document document) {
-		String filename = document.getVersionID() + ".tex";
+		String filename = "version_tracking\\" + document.getVersionID() + ".tex";
 		document.save(filename);
 		versionID = document.getVersionID();
 	}
@@ -26,7 +26,7 @@ public class StableStrategy implements VersionTrackingStrategy{
 		
 		String fileContents = "";
 		try {
-			Scanner scanner = new Scanner(new FileInputStream(versionID + ".tex"));
+			Scanner scanner = new Scanner(new FileInputStream("version_tracking\\" + versionID + ".tex"));
 			while(scanner.hasNextLine()) {
 				fileContents = fileContents + scanner.nextLine() + "\n";
 			}
@@ -42,7 +42,7 @@ public class StableStrategy implements VersionTrackingStrategy{
 	@Override
 	public void setEntireHistory(List<Document> documents) {
 		for (Document document : documents) {
-			document.save(document.getVersionID() + ".tex");
+			document.save("version_tracking\\" + document.getVersionID() + ".tex");
 		}
 		if(documents.size() > 0)
 			versionID = documents.get(documents.size()-1).getVersionID();
@@ -59,7 +59,7 @@ public class StableStrategy implements VersionTrackingStrategy{
 		for(int i = 0; i <= n; i++) {
 			String fileContents = "";
 			try {
-				Scanner scanner = new Scanner(new FileInputStream(i + ".tex"));
+				Scanner scanner = new Scanner(new FileInputStream("version_tracking\\" + i + ".tex"));
 				while(scanner.hasNextLine()) {
 					fileContents = fileContents + scanner.nextLine() + "\n";
 				}
@@ -76,7 +76,7 @@ public class StableStrategy implements VersionTrackingStrategy{
 
 	@Override
 	public void removeVersion() {
-		String filename = System.getProperty("user.dir") + "\\" + versionID + ".tex";
+		String filename = System.getProperty("user.dir") + "version_tracking\\" + versionID + ".tex";
 		File versionFile = new File(filename);
 		// File deletion does not work
 		// Probably has to do with FileInputStream or scanner
@@ -92,7 +92,7 @@ public class StableStrategy implements VersionTrackingStrategy{
 	public void clearHistory() {
 		int versionsCount = Integer.parseInt(versionID);
 		for (int id=0; id<versionsCount; id++) {
-			String filename = System.getProperty("user.dir") + "\\" + String.valueOf(id) + ".tex";
+			String filename = System.getProperty("user.dir") + "version_tracking\\" + String.valueOf(id) + ".tex";
 			File versionFile = new File(filename);
 			versionFile.delete();
 		}

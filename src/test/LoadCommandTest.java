@@ -56,7 +56,7 @@ class LoadCommandTest extends EnvironmentSetup {
 	}
 	
 	private String simulateOpenExistingDocumentBehaviour(String templateType, String view) {
-		String filename = System.getProperty("user.dir") + "\\" + templateType + "TestFile.tex";
+		String filename = System.getProperty("user.dir") + "\\test_files\\tex\\" + templateType + "TestFile.tex";
 		JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));		
 		chooser.setSelectedFile(new File(filename));	
 		chooser.approveSelection();

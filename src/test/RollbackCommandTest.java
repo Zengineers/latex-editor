@@ -58,16 +58,6 @@ class RollbackCommandTest extends EnvironmentSetup {
 			}
 			else {
 				// TODO maybe assert dialog message
-//				assertEquals(latexEditorController.getVersionTrackingManager().getOptionPane().isShowing(), true);
-//				latexEditorController.getVersionTrackingManager().getOptionPane().setVisible(false);		
-				try {
-					Robot r = new Robot();
-					System.out.println("press?");
-					r.keyPress(27);	// esc
-					r.keyPress(10);	// enter
-				} catch (AWTException e) {
-					e.printStackTrace();
-				}
 			}
 		}
 	}

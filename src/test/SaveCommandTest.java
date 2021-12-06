@@ -49,7 +49,7 @@ class SaveCommandTest extends EnvironmentSetup {
 	}
 
 	private String simulateSaveAsMenuItemBehaviour(String templateType) {
-		String filename = System.getProperty("user.dir") + "\\" + templateType + "TestFile.tex";
+		String filename = System.getProperty("user.dir") + "\\test_files\\tex\\" + templateType + "TestFile.tex";
 		JFileChooser chooser = new JFileChooser(System.getProperty("user.dir"));		
 		chooser.setSelectedFile(new File(filename));	
 		chooser.approveSelection();
