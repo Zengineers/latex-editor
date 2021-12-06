@@ -14,7 +14,6 @@ public class DisableVersionTrackingCommand implements Command {
 	@Override
 	public void execute() {
 		versionTrackingManager.disable();
-//		versionTrackingManager.getStrategy().clearHistory();
 	}
 
 }
