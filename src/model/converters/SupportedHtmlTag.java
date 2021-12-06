@@ -1,6 +1,7 @@
 package model.converters;
 
 public enum SupportedHtmlTag {
+	
 	DOCTYPE {
 		@Override
 		protected String convert(String[] words, String word) {
@@ -11,7 +12,7 @@ public enum SupportedHtmlTag {
 			return "<!DOCTYPE";
 		}
 	},
-	style {
+	STYLE {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -21,7 +22,7 @@ public enum SupportedHtmlTag {
 			return "<style>";
 		}
 	},
-	style_end {
+	STYLE_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -31,7 +32,7 @@ public enum SupportedHtmlTag {
 			return "</style>";
 		}
 	},
-	html {
+	HTML {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -41,7 +42,7 @@ public enum SupportedHtmlTag {
 			return "<html";
 		}
 	}, 
-	html_end {
+	HTML_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -52,7 +53,7 @@ public enum SupportedHtmlTag {
 		}
 		
 	},
-	body {
+	BODY {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\begin{document}\n";
@@ -62,7 +63,7 @@ public enum SupportedHtmlTag {
 			return "<body";
 		}
 	},
-	body_end {
+	BODY_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\end{document}\n";
@@ -72,7 +73,7 @@ public enum SupportedHtmlTag {
 			return "</body>";
 		}
 	},
-	div {
+	DIV {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\begin{abstract}\n";
@@ -82,7 +83,7 @@ public enum SupportedHtmlTag {
 			return "<div>";
 		}
 	},
-	div_end {
+	DIV_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\n\\end{abstract}\n\n";
@@ -92,7 +93,7 @@ public enum SupportedHtmlTag {
 			return "</div>";
 		}
 	},
-	br {
+	BR {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\n";
@@ -102,7 +103,7 @@ public enum SupportedHtmlTag {
 			return "<br>";
 		}	
 	},
-	title {
+	TITLE {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setShouldConvert(true);
@@ -113,7 +114,7 @@ public enum SupportedHtmlTag {
 			return "<title>";
 		}
 	},
-	title_end {
+	TITLE_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -123,7 +124,7 @@ public enum SupportedHtmlTag {
 			return "</title>";
 		}
 	},
-	class_attribute {
+	CLASS_ATTRIBUTE {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setShouldConvert(true);
@@ -134,7 +135,7 @@ public enum SupportedHtmlTag {
 			return "class=\"";
 		}
 	},
-	author {
+	AUTHOR {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -145,7 +146,7 @@ public enum SupportedHtmlTag {
 			return "<author>";
 		}
 	},
-	author_end {
+	AUTHOR_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -155,7 +156,7 @@ public enum SupportedHtmlTag {
 			return "</author>";
 		}
 	},
-	date {
+	DATE {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -166,7 +167,7 @@ public enum SupportedHtmlTag {
 			return "<date>";
 		}
 	},
-	date_end {
+	DATE_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -176,7 +177,7 @@ public enum SupportedHtmlTag {
 			return "</date>";
 		}
 	},
-	today {
+	TODAY {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -187,7 +188,7 @@ public enum SupportedHtmlTag {
 			return "DD-MM-YYYY";
 		}
 	},
-	h1 {
+	H1 {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -198,7 +199,7 @@ public enum SupportedHtmlTag {
 			return "<h1>";
 		}
 	},
-	h1_end {
+	H1_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -208,7 +209,7 @@ public enum SupportedHtmlTag {
 			return "</h1>";
 		}
 	},
-	h2 {
+	H2 {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -219,7 +220,7 @@ public enum SupportedHtmlTag {
 			return "<h2>";
 		}
 	},
-	h2_end {
+	H2_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -229,7 +230,7 @@ public enum SupportedHtmlTag {
 			return "</h2>";
 		}
 	},
-	h3 {
+	H3 {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -240,7 +241,7 @@ public enum SupportedHtmlTag {
 			return "<h3>";
 		}
 	},
-	h3_end {
+	H3_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -250,7 +251,7 @@ public enum SupportedHtmlTag {
 			return "</h3>";
 		}
 	},
-	h4 {
+	H4 {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -261,7 +262,7 @@ public enum SupportedHtmlTag {
 			return "<h4>";
 		}
 	},
-	h4_end {
+	H4_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -271,7 +272,7 @@ public enum SupportedHtmlTag {
 			return "</h4>";
 		}
 	},
-	h5 {
+	H5 {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -282,7 +283,7 @@ public enum SupportedHtmlTag {
 			return "<h5>";
 		}
 	},
-	h5_end {
+	H5_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -292,7 +293,7 @@ public enum SupportedHtmlTag {
 			return "</h5>";
 		}
 	},
-	and {
+	AND {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\and ";
@@ -302,7 +303,7 @@ public enum SupportedHtmlTag {
 			return "&";
 		}	
 	},
-	paragraph {
+	PARAGRAPH {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\par\n";
@@ -312,7 +313,7 @@ public enum SupportedHtmlTag {
 			return "<p>";
 		}	
 	},
-	paragraph_end {
+	PARAGRAPH_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -322,7 +323,7 @@ public enum SupportedHtmlTag {
 			return "</p>";
 		}	
 	},
-	unordered_list {
+	UNORDERED_LIST {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\begin{itemize}\n";
@@ -332,7 +333,7 @@ public enum SupportedHtmlTag {
 			return "<ul>";
 		}	
 	},
-	unordered_list_end {
+	UNORDERED_LIST_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\end{itemize}\n\n";
@@ -342,7 +343,7 @@ public enum SupportedHtmlTag {
 			return "</ul>";
 		}	
 	},
-	list_item {
+	LIST_ITEM {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\item ";
@@ -352,7 +353,7 @@ public enum SupportedHtmlTag {
 			return "<li>";
 		}	
 	},
-	list_item_end {
+	LIST_ITEM_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -362,7 +363,7 @@ public enum SupportedHtmlTag {
 			return "</li>";
 		}	
 	},
-	ordered_list {
+	ORDERED_LIST {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\begin{enumerate}\n";
@@ -372,7 +373,7 @@ public enum SupportedHtmlTag {
 			return "<ol>";
 		}	
 	},
-	ordered_list_end {
+	ORDERED_LIST_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\end{enumerate}\n\n";
@@ -382,7 +383,7 @@ public enum SupportedHtmlTag {
 			return "</ol>";
 		}	
 	},
-	table {
+	TABLE {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\begin{table}\n";
@@ -392,7 +393,7 @@ public enum SupportedHtmlTag {
 			return "<table>";
 		}	
 	},
-	table_end {
+	TABLE_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\end{table}\n\n";
@@ -402,7 +403,7 @@ public enum SupportedHtmlTag {
 			return "</table>";
 		}	
 	},
-	caption {
+	CAPTION {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -413,7 +414,7 @@ public enum SupportedHtmlTag {
 			return "<caption>";
 		}	
 	},
-	caption_end {
+	CAPTION_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -423,7 +424,7 @@ public enum SupportedHtmlTag {
 			return "</caption>";
 		}	
 	},
-	label {
+	LABEL {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -434,7 +435,7 @@ public enum SupportedHtmlTag {
 			return "<label>";
 		}	
 	},
-	label_end {
+	LABEL_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -445,7 +446,7 @@ public enum SupportedHtmlTag {
 			return "</label>";
 		}	
 	},
-	tbody {
+	TBODY {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -456,7 +457,7 @@ public enum SupportedHtmlTag {
 			return "<tbody>";
 		}	
 	},
-	tbody_end {
+	TBODY_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setOpenBracket(true);
@@ -467,7 +468,7 @@ public enum SupportedHtmlTag {
 			return "</tbody>";
 		}	
 	},
-	hr {
+	HR {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\hline\n";
@@ -477,7 +478,7 @@ public enum SupportedHtmlTag {
 			return "<hr>";
 		}	
 	},
-	table_row {
+	TABLE_ROW {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setConvertingTable(true);
@@ -488,7 +489,7 @@ public enum SupportedHtmlTag {
 			return "<tr>";
 		}	
 	},
-	table_row_end {
+	TABLE_ROW_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setConvertingTable(false);
@@ -500,7 +501,7 @@ public enum SupportedHtmlTag {
 			return "</tr>";
 		}	
 	},
-	table_data {
+	TABLE_DATA {
 		@Override
 		protected String convert(String[] words, String word) {
 			if (!HtmlToLatexConverter.isFirstColumn()) {
@@ -513,7 +514,7 @@ public enum SupportedHtmlTag {
 			return "<td>";
 		}	
 	},
-	table_data_end {
+	TABLE_DATA_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			HtmlToLatexConverter.setIsFirstColumn(false);
@@ -524,7 +525,7 @@ public enum SupportedHtmlTag {
 			return "</td>";
 		}	
 	},
-	figure {
+	FIGURE {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\begin{figure}\n";
@@ -534,7 +535,7 @@ public enum SupportedHtmlTag {
 			return "<figure>";
 		}	
 	},
-	figure_end {
+	FIGURE_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\end{figure}\n";
@@ -544,7 +545,7 @@ public enum SupportedHtmlTag {
 			return "</figure>";
 		}	
 	},
-	img {
+	IMG {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "\\includegraphics[width=...,height=...]{...}\n";
@@ -554,7 +555,7 @@ public enum SupportedHtmlTag {
 			return "<img";
 		}	
 	},
-	src_attribute {
+	SRC_ATTRIBUTE {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -564,7 +565,7 @@ public enum SupportedHtmlTag {
 			return "src=";
 		}	
 	},
-	style_attribute {
+	STYLE_ATTRIBUTE {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -574,7 +575,7 @@ public enum SupportedHtmlTag {
 			return "style=";
 		}	
 	},
-	alt_attribute {
+	ALT_ATTRIBUTE {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -584,7 +585,7 @@ public enum SupportedHtmlTag {
 			return "alt=";
 		}	
 	},
-	tag_end {
+	TAG_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";
@@ -594,7 +595,7 @@ public enum SupportedHtmlTag {
 			return "/>";
 		}	
 	},
-	comment {
+	COMMENT {
 		@Override
 		protected String convert(String[] words, String word) {
 			if (word.startsWith("<!--\\documentclass")) {
@@ -617,7 +618,7 @@ public enum SupportedHtmlTag {
 			return "<!--";
 		}	
 	},
-	comment_end {
+	COMMENT_END {
 		@Override
 		protected String convert(String[] words, String word) {
 			return "";

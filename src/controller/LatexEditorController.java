@@ -9,6 +9,7 @@ import javax.swing.JEditorPane;
 
 import controller.commands.Command;
 import controller.commands.CommandFactory;
+import model.Converter;
 import model.DocumentManager;
 import model.VersionTrackingManager;
 
@@ -17,6 +18,7 @@ public class LatexEditorController{
 	
 	private DocumentManager documentManager;
 	private VersionTrackingManager versionTrackingManager;
+	private Converter converter;
 	private JEditorPane editorPane;
 	
 	private String templateType;
@@ -35,7 +37,8 @@ public class LatexEditorController{
 	
 	private LatexEditorController() {
 		documentManager = DocumentManager.getInstance();
-		versionTrackingManager = VersionTrackingManager.getInstance();	
+		versionTrackingManager = VersionTrackingManager.getInstance();
+		converter = Converter.getInstance();
 	}
 
 	public void createCommands() {
@@ -61,6 +64,10 @@ public class LatexEditorController{
 	
 	public DocumentManager getDocumentManager() {
 		return documentManager;
+	}
+	
+	public Converter getConverter() {
+		return converter;
 	}
 	
 	public String getTemplateType() {

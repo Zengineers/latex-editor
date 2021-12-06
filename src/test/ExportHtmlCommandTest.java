@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import javax.swing.JFileChooser;
 
@@ -36,14 +38,15 @@ class ExportHtmlCommandTest extends EnvironmentSetup {
 		setUpMainWindow();
 		
 		DocumentManager documentManager = latexEditorController.getDocumentManager();
+		String latexContents = documentManager.getCurrentDocument().getContents();
 		String filename = simulateExportHtmlMenuItemBehaviour(templateType);
-//		String documentContents = documentManager.getCurrentDocument().getContents();		
-//		String exportedFileContents = Files.readString(Path.of(filename));
+		String expectedFileContents = latexEditorController.getConverter().convertLatexToHtml(latexContents);
+		String exportedFileContents = Files.readString(Path.of(filename));
 		File exportedFile = new File(filename);
 		
 		assertEquals(exportedFile.exists(), true);
 		assertEquals(exportedFile.isDirectory(), false);
-//		assertEquals(exportedFileContents, documentContents);
+		assertEquals(exportedFileContents, expectedFileContents);
 	}
 
 	private String simulateExportHtmlMenuItemBehaviour(String templateType) {

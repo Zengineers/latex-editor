@@ -1,6 +1,6 @@
 package test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 
@@ -8,9 +8,7 @@ import javax.swing.JFileChooser;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import model.DocumentManager;
@@ -37,13 +35,16 @@ class ImportHtmlCommandTest extends EnvironmentSetup {
 	void testExecute(String templateType) {
 		DocumentManager documentManager = latexEditorController.getDocumentManager();
 		String filename = simulateImportHtmlMenuItemBehaviour(templateType);
+		String htmlContents = latexEditorController.readFileContents();
+		String expectedContents = latexEditorController.getConverter().convertHtmlToLatex(htmlContents);
 		String documentContents = documentManager.getCurrentDocument().getContents();	
-//		String expectedContents = //TODO 
+		String editorPaneContents = latexEditorController.getEditorPane().getText();
 		File openedFile = new File(filename);
 		
 		assertEquals(openedFile.exists(), true);
 		assertEquals(openedFile.isDirectory(), false);
-//		assertEquals(documentContents, expectedContents);
+		assertEquals(documentContents, expectedContents);
+		assertEquals(editorPaneContents, expectedContents);
 	}
 
 	private String simulateImportHtmlMenuItemBehaviour(String templateType) {

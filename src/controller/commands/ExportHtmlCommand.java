@@ -13,9 +13,11 @@ public class ExportHtmlCommand implements Command {
 	
 	
 	public ExportHtmlCommand() {
-		documentManager = DocumentManager.getInstance();
+//		documentManager = DocumentManager.getInstance();
 		latexEditorController = LatexEditorController.getInstance();
-		converter = Converter.getInstance();
+		documentManager = latexEditorController.getDocumentManager();
+		converter = latexEditorController.getConverter();
+//		converter = Converter.getInstance();
 	}
 	
 	
@@ -27,8 +29,6 @@ public class ExportHtmlCommand implements Command {
 		Document htmlDocument = documentManager.createDocument("emptyTemplate");
 		htmlDocument.setContents(htmlContents);
 		htmlDocument.save(latexEditorController.getFilename());
-			
-//		System.out.println(contents);
 	}
 
 }
