@@ -4,8 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 
 import javax.swing.JFileChooser;
 
@@ -31,7 +29,8 @@ class ExportHtmlCommandTest extends EnvironmentSetup {
 
 	@ParameterizedTest
 	@ValueSource(strings = {"articleTemplate", "bookTemplate", 
-											"reportTemplate", "letterTemplate"})
+											"reportTemplate", "letterTemplate",
+											"emptyTemplate"})
 	void testExecute(String templateType) throws IOException {
 		selectTemplateRadioButton(templateType);
 		setUpMainWindow();

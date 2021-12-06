@@ -283,7 +283,11 @@ public class MainWindow {
 				int option = filechooser.showOpenDialog(null);
 				if (option == JFileChooser.APPROVE_OPTION) {
 					String filename = filechooser.getSelectedFile().toString();
-					System.out.println(filename);
+					latexEditorController.setFilename(filename);
+					latexEditorController.enact("importHtml");
+					setDisabledCommandsMenuItems();
+					String contents = latexEditorController.getDocumentManager().getCurrentDocument().getContents();
+					editorPane.setText(contents);
 				}
 			}
 		});

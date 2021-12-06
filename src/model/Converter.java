@@ -3,6 +3,7 @@ package model;
 import java.util.Optional;
 
 import model.converters.LatexToHtmlConverter;
+import model.converters.HtmlToLatexConverter;
 
 public class Converter {
 	private static Converter instance = null;
@@ -28,8 +29,16 @@ public class Converter {
 	}
 
 	public String convertHtmlToLatex(String contents) {
-		// TODO
-		return contents;
+		HtmlToLatexConverter.reset();
+		String[] lines = splitContentsToLines(contents);
+		String latexContents = "";
+		for (String line : lines) {
+			latexContents += HtmlToLatexConverter.checkClosingBracket();
+			latexContents += HtmlToLatexConverter.checkNewLine();
+			String[] words = splitLineToWords(line);
+			latexContents += HtmlToLatexConverter.convertLine(words);
+		}
+		return latexContents.trim();
 	}
 	
 	public static String removeFirstChar(String s) {

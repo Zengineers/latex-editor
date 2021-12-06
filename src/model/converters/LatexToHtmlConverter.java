@@ -19,9 +19,8 @@ public class LatexToHtmlConverter {
 	        @Override
 	        protected String convert(String[] words, String word) {
 	        	shouldBreak = false;
-	        	String latexParams = word.substring("\\documentclass".length());
-				return "<!--Latex Parameters-->\n" +	
-						"<!--" + latexParams + "-->\n\n";	
+				return "<!--" + word + "-->\n\n";	
+						
 	        }
 			@Override
 			protected String getCommand() {
@@ -100,7 +99,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				documentTitle = getCommandParams("\\title", words);
-				return "<title>\n" + documentTitle + "\n</title>\n";
+				return "<title> " + documentTitle + " </title>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -135,9 +134,9 @@ public class LatexToHtmlConverter {
 			@Override
 			protected String convert(String[] words, String word) {
 				shouldBreak = false;
-				return "<h1> " + documentTitle + " <h1>\n" +
-						"<author> " + documentAuthor + " <author><br>\n" +
-						"<date> " + documentDate + " <date><br>\n";
+				return "<h1> " + documentTitle + " </h1>\n" +
+						"<author> " + documentAuthor + " </author><br>\n" +
+						"<date> " + documentDate + " </date><br>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -182,7 +181,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				String chapterHeader = getCommandParams("\\chapter", words);
-				return "<h2> " + chapterHeader + " <h2>\n";
+				return "<h2> " + chapterHeader + " </h2>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -194,7 +193,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				String sectionHeader = getCommandParams("\\section", words);
-				return "<h3> " + sectionHeader + " <h3>\n";
+				return "<h3> " + sectionHeader + " </h3>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -206,7 +205,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				String subsectionHeader = getCommandParams("\\subsection", words);
-				return "<h4> " + subsectionHeader + " <h4>\n";
+				return "<h4> " + subsectionHeader + " </h4>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -218,7 +217,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				String subsubsectionHeader = getCommandParams("\\subsubsection", words);
-				return "<h5> " + subsubsectionHeader + " <h5>\n";
+				return "<h5> " + subsubsectionHeader + " </h5>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -241,7 +240,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				String signatureText = getCommandParams("\\signature", words);
-				return "<div> " + signatureText + " <div>\n";
+				return "<p> " + signatureText + " </p>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -253,7 +252,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				String addressText = getCommandParams("\\address", words);
-				return "<div> " + addressText + " <div>\n";
+				return "<p> " + addressText + " </p>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -265,7 +264,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				String openingText = getCommandParams("\\opening", words);
-				return "<br><div> " + openingText + " <div><br>\n";
+				return "<br>\n<p> " + openingText + " </p>\n<br>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -277,7 +276,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				String closingText = getCommandParams("\\closing", words);
-				return "\n<br><div> " + closingText + " <div><br>\n";
+				return "\n<br>\n<p> " + closingText + " </p>\n<br>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -300,7 +299,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				String enclText = getCommandParams("\\encl", words);
-				return "\n<br><div> " + enclText + " <div><br>\n";
+				return "\n<br>\n<p> " + enclText + " </p>\n<br>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -392,7 +391,7 @@ public class LatexToHtmlConverter {
 			protected String convert(String[] words, String word) {
 				shouldBreak = true;
 				String captionText = getCommandParams("\\caption", words);
-				return "<caption> " + captionText + "</caption>\n";
+				return "<caption> " + captionText + " </caption>\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -460,7 +459,7 @@ public class LatexToHtmlConverter {
 			@Override
 			protected String convert(String[] words, String word) {
 				shouldBreak = false;
-				return "<p><img src=\"myimage.png\" style=\"width:5cm\" alt=\"image\" /></p>";
+				return "<img src=\"myimage.png\" style=\"width:5cm\" alt=\"image\" />\n";
 			}
 			@Override
 			protected String getCommand() {
@@ -587,10 +586,10 @@ public class LatexToHtmlConverter {
 				word = "&";
 			}
 			if (word.contains("\\label")) {
-				word = word.replace("\\label", "<label>");
+				word = word.replace("\\label", " <label> ");
 				word = word.replace("{", "");
 				word = word.replace("}", "");
-				word += "</label>";
+				word += " </label> ";
 			}
 			str += word + " ";
 		}

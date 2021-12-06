@@ -1,6 +1,9 @@
 package controller;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.HashMap;
+import java.util.Scanner;
 
 import javax.swing.JEditorPane;
 
@@ -90,6 +93,36 @@ public class LatexEditorController{
 
 	public void setCommandType(String commandType) {
 		this.commandType = commandType;
+	}
+
+	public String readFileContents() {
+		String fileContents = "";
+		try {
+			Scanner scanner = new Scanner(new FileInputStream(filename));
+			while(scanner.hasNextLine()) {
+				fileContents = fileContents + scanner.nextLine() + "\n";
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		return fileContents;
+	}
+
+	public String findTemplateType(String fileContents) {
+		fileContents = fileContents.trim();
+		if(fileContents.startsWith("\\documentclass[11pt,twocolumn,a4paper]{article}")) {
+			return "articleTemplate";
+		}
+		if(fileContents.startsWith("\\documentclass[11pt,a4paper]{book}")) {
+			return "bookTemplate";
+		}
+		if(fileContents.startsWith("\\documentclass[11pt,a4paper]{report}")) {
+			return "reportTemplate";
+		}
+		if(fileContents.startsWith("\\documentclass{letter}")) {
+			return "letterTemplate";
+		}
+		return "emptyTemplate";
 	}
 	
 }

@@ -48,10 +48,10 @@ class LoadCommandTest extends EnvironmentSetup {
 		String filename = simulateOpenExistingDocumentBehaviour(templateType, view);
 		String documentContents = documentManager.getCurrentDocument().getContents();		
 		String openedFileContents = Files.readString(Path.of(filename));
-		File savedFile = new File(filename);
+		File openedFile = new File(filename);
 		
-		assertEquals(savedFile.exists(), true);
-		assertEquals(savedFile.isDirectory(), false);
+		assertEquals(openedFile.exists(), true);
+		assertEquals(openedFile.isDirectory(), false);
 		assertEquals(openedFileContents, documentContents);
 	}
 	
