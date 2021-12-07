@@ -23,16 +23,16 @@ class RollbackCommandTest extends EnvironmentSetup {
 	}
 
 	@ParameterizedTest
-	@CsvSource(value = {"5-bookTemplate-volatile-stable", "5-bookTemplate-stable-volatile",
-										"5-letterTemplate-volatile-stable", "5-letterTemplate-stable-volatile",
-										"5-reportTemplate-volatile-stable", "5-reportTemplate-stable-volatile",
-										"5-articleTemplate-volatile-stable", "5-articleTemplate-stable-volatile",
-										"5-emptyTemplate-volatile-stable", "5-emptyTemplate-stable-volatile"}, 
+	@CsvSource(value = {"5-bookTemplate-volatile", "5-bookTemplate-stable",
+										"5-letterTemplate-volatile", "5-letterTemplate-stable",
+										"5-reportTemplate-volatile", "5-reportTemplate-stable",
+										"5-articleTemplate-volatile", "5-articleTemplate-stable",
+										"5-emptyTemplate-volatile", "5-emptyTemplate-stable"}, 
 						delimiter = '-')
-	void testExecute(String editsCount, String templateType, String fromStrategyType) {
+	void testExecute(String editsCount, String templateType, String strategyType) {
 		selectTemplateRadioButton(templateType);
 		setUpMainWindow();	
-		clickStrategyMenuItem(fromStrategyType);
+		clickStrategyMenuItem(strategyType);
 		editDocumentVersions(Integer.parseInt(editsCount));
 		
 		for (int i=0; i<Integer.parseInt(editsCount); i++) {
