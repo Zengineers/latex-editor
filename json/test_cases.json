@@ -1,0 +1,145 @@
+[
+    {
+        "": {
+            "ID": "T1_V0",
+            "Test Class": "CreateCommandTest",
+            "Description": "Tests latex document creation",
+            "Pre-cond.": "Application successfully initialized and running on choose template GUI",
+            "Input": "Document template type",
+            "Output": "No output generated",
+            "Post-cond.": "Application transitioned to main window GUI with a newly created document based on the given template type",
+            "Class under test": "CreateCommand",
+            "Method(s) under test": "(1) execute"
+            }
+    },
+    {
+        "": {
+            "ID": "T2_V0",
+            "Test Class": "AddLatexCommandTest",
+            "Description": "Tests latex document creation",
+            "Pre-cond.": "Application successfully initialized and running on main window GUI",
+            "Input": "(1) Document template type  (2) Latex command type",
+            "Output": "No output generated",
+            "Post-cond.": "Added the corresponding latex command to the current document",
+            "Class under test": "AddLatexCommand",
+            "Method(s) under test": "(1) execute"
+            }
+    },
+    {
+        "": {
+            "ID": "T3_V0",
+            "Test Class": "EnableVersionTrackingCommandTest",
+            "Description": "Tests version tracking enablement",
+            "Pre-cond.": "Application successfully initialized and running on main window GUI",
+            "Input": "(1) Document template type  (2) Strategy type",
+            "Output": "No output generated",
+            "Post-cond.": "Version tracking enabled with the corresponding strategy type",
+            "Class under test": "EnableVersionTrackingCommand",
+            "Method(s) under test": "(1) execute"
+            }
+    },
+    {
+        "": {
+            "ID": "T4_V0",
+            "Test Class": "DisableVersionTrackingCommandTest",
+            "Description": "Tests version tracking disablement",
+            "Pre-cond.": "Application successfully initialized and running on main window GUI with enabled version tracking",
+            "Input": "(1) Document template type  (2) Strategy type",
+            "Output": "No output generated",
+            "Post-cond.": "Version tracking disabled",
+            "Class under test": "DisableVersionTrackingCommand",
+            "Method(s) under test": "(1) execute"
+            }
+    },
+    {
+        "": {
+            "ID": "T5_V0",
+            "Test Class": "ChangeVersionTrackingStrategyCommandTest",
+            "Description": "Tests version tracking disablement",
+            "Pre-cond.": "Application successfully initialized and running on main window GUI with enabled version tracking and non-empty document versions",
+            "Input": "(1) Number of document versions  (2) Document template type  (3) From-Strategy type (4) To-Strategy type",
+            "Output": "No output generated",
+            "Post-cond.": "Version tracking changed and document versions transfered to the newly enabled strategy",
+            "Class under test": "ChangeVersionTrackingStrategyCommand",
+            "Method(s) under test": "(1) execute"
+            }
+    },
+    {
+        "": {
+            "ID": "T6_V0",
+            "Test Class": "EditCommandTest",
+            "Description": "Tests version tracking disablement",
+            "Pre-cond.": "Application successfully initialized and running on main window GUI",
+            "Input": "(1) Document template type  (2) Input text",
+            "Output": "No output generated",
+            "Post-cond.": "Edited document version saved as current document",
+            "Class under test": "EditCommand",
+            "Method(s) under test": "(1) execute"
+            }
+    },
+    {
+        "": {
+            "ID": "T7_V0",
+            "Test Class": "RollbackCommandTest",
+            "Description": "Tests roll back to previous document version",
+            "Pre-cond.": "Application successfully initialized and running on main window GUI with enabled version tracking and non-empty document versions",
+            "Input": "(1) Number of document versions  (2) Document template type  (3) Strategy type",
+            "Output": "No output generated",
+            "Post-cond.": "Current document version rolled back through all previous document versions",
+            "Class under test": "RollbackCommand",
+            "Method(s) under test": "(1) execute"
+            }
+    },
+    {
+        "": {
+            "ID": "T8_V0",
+            "Test Class": "SaveCommandTest",
+            "Description": "Tests document save on disk",
+            "Pre-cond.": "Application successfully initialized and running on main window GUI",
+            "Input": "(1) Destination path",
+            "Output": "Tex file with the document contents in the test_files/tex directory",
+            "Post-cond.": "Application state intact",
+            "Class under test": "SaveCommand",
+            "Method(s) under test": "(1) execute"
+            }
+    },
+    {
+        "": {
+            "ID": "T9_V0",
+            "Test Class": "LoadCommandTest",
+            "Description": "Tests document load from disk",
+            "Pre-cond.": "Application successfully initialized and running on main window GUI or on opening window GUI",
+            "Input": "(1) Path of latex document on disk (2) GUI window",
+            "Output": "No output generated",
+            "Post-cond.": "Contents of the latex document on disk loaded as the current document of the application",
+            "Class under test": "LoadCommand",
+            "Method(s) under test": "(1) execute"
+            }
+    },
+    {
+        "": {
+        "ID": "T10_V0",
+        "Test Class": "ExportHtmlCommandTest",
+        "Description": "Tests html document export to disk",
+        "Pre-cond.": "Application successfully initialized and running on main window GUI",
+        "Input": "Destination path",
+        "Output": "HTML file with the converted latex document contents in the test_files/html directory",
+        "Post-cond.": "Application state intact",
+        "Class under test": "ExportHtmlCommand",
+        "Method(s) under test": "(1) execute  (2) convertLatexToHtml"
+        }
+    },
+    {
+        "": {
+            "ID": "T11_V0",
+            "Test Class": "ImportHtmlCommandTest",
+            "Description": "Tests html document import from disk",
+            "Pre-cond.": "Application successfully initialized and running on main window GUI",
+            "Input": "(1) Path of html document on disk",
+            "Output": "No output generated",
+            "Post-cond.": "Contents of the html document on disk converted to latex and loaded as the current document of the application",
+            "Class under test": "ImportHtmlCommand",
+            "Method(s) under test": "(1) execute  (2) convertHtmlToLatex"
+            }
+    }
+]
