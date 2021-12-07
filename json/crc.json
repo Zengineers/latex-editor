@@ -1,0 +1,371 @@
+[
+	{
+	  "name": "LatexEditorController",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Decouples view classes from model classes",
+		"Knows filename",
+		"Knows document template type",
+		"Stores commands",
+		"Enacts commands",
+		"Reads contents of loaded file",
+		"Finds template type of loaded file"
+	  ],
+	  "collaborators": [
+		"DocumentManager",
+		"VersionTrackingManager",
+		"Converter",
+		"CommandFactory"
+	  ]
+	},
+	{
+	  "name": "CommandFactory",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Creates the command classes of the application"
+	  ],
+	  "collaborators": [
+		"-"
+	  ]
+	},
+	{
+	  "name": "CreateCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Creates a new document ",
+		"Sets a new document as the current document"
+	  ],
+	  "collaborators": [
+		"LatexEditorController",
+		"DocumentManager"
+	  ]
+	},
+	{
+	  "name": "AddLatexCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Adds latex commands to current document",
+		"Adds latex commands to editor pane",
+		"Updates caret position of editor pane"
+	  ],
+	  "collaborators": [
+		"LatexEditorController",
+		"Strings"
+	  ]
+	},
+	{
+	  "name": "EnableVersionTrackingCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Enables version tracking"
+	  ],
+	  "collaborators": [
+		"VersionTrackingManager"
+	  ]
+	},
+	{
+	  "name": "DisableVersionTrackingCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Disables version tracking"
+	  ],
+	  "collaborators": [
+		"VersionTrackingManager"
+	  ]
+	},
+	{
+	  "name": "ChangeVersionTrackingStrategyCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Changes the currently enabled version tracking strategy"
+	  ],
+	  "collaborators": [
+		"VersionTrackingManager"
+	  ]
+	},
+	{
+	  "name": "EditCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Saves current document version based on the enabled version tracking strategy"
+	  ],
+	  "collaborators": [
+		"LatexEditorController",
+		"VersionTrackingManager",
+		"DocumentManager"
+	  ]
+	},
+	{
+	  "name": "RollbackCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Rolls back to previous document version",
+		"Updates editor pane contents"
+	  ],
+	  "collaborators": [
+		"VersionTrackingManager",
+		"LatexEditorController",
+		"DocumentManager"
+	  ]
+	},
+	{
+	  "name": "SaveCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Saves current document on disk"
+	  ],
+	  "collaborators": [
+		"DocumentManager",
+		"LatexEditorController"
+	  ]
+	},
+	{
+	  "name": "LoadCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Loads document from disk"
+	  ],
+	  "collaborators": [
+		"DocumentManager",
+		"LatexEditorController"
+	  ]
+	},
+	{
+	  "name": "ExportHtmlCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Signals latex to html document conversion",
+		"Saves the converted document on disk"
+	  ],
+	  "collaborators": [
+		"DocumentManager",
+		"LatexEditorController",
+		"Converter"
+	  ]
+	},
+	{
+	  "name": "ImportHtmlCommand",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Loads document from disk",
+		"Signals html to latex document conversion",
+		"Creates new converted document",
+		""
+	  ],
+	  "collaborators": [
+		"DocumentManager",
+		"LatexEditorController",
+		"Converter"
+	  ]
+	},
+	{
+	  "name": "Converter",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Converts latex document to html document",
+		"Converts html document to latex document"
+	  ],
+	  "collaborators": [
+		"LatexToHtmlConverter",
+		"HtmlToLatexConverter"
+	  ]
+	},
+	{
+	  "name": "HtmlToLatexConverter",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Converts a line from html to latex"
+	  ],
+	  "collaborators": [
+		"-",
+		""
+	  ]
+	},
+	{
+	  "name": "LatexToHtmlConverter",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Converts a line from latex to html"
+	  ],
+	  "collaborators": [
+		"Converter"
+	  ]
+	},
+	{
+	  "name": "Document",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Knows contents of a document",
+		"Knows version ID of a document",
+		"Saves document to disk",
+		"Clones document",
+		"Changes version ID of a document"
+	  ],
+	  "collaborators": [
+		"-"
+	  ]
+	},
+	{
+	  "name": "DocumentManager",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Knows the current document",
+		"Creates new document",
+		"Knows contents of document templates"
+	  ],
+	  "collaborators": [
+		"Document"
+	  ]
+	},
+	{
+	  "name": "VersionTrackingManager",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Knows whether version tracking is enabled or not",
+		"Knows the current version tracking strategy",
+		"Enables version tracking",
+		"Disables version tracking",
+		"Changes version tracking strategy",
+		"Rolls back to previous document version",
+		""
+	  ],
+	  "collaborators": [
+		"StableStrategy",
+		"VolatileStrategy",
+		"StrategyFactory"
+	  ]
+	},
+	{
+	  "name": "StrategyFactory",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Creates the version tracking strategy classes of the application"
+	  ],
+	  "collaborators": [
+		"-"
+	  ]
+	},
+	{
+	  "name": "StableStrategy",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Stores the version history of a document on disk",
+		"Changes the version history of a document",
+		"Clears the version history of a document"
+	  ],
+	  "collaborators": [
+		"Document"
+	  ]
+	},
+	{
+	  "name": "VolatileStrategy",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Stores the version history of a document in main memory",
+		"Changes the version history of a document",
+		"Clears the version history of a document"
+	  ],
+	  "collaborators": [
+		"Document"
+	  ]
+	},
+	{
+	  "name": "OpeningWindow",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Initiliazes opening window GUI",
+		"* Serves as the application's entry point",
+		""
+	  ],
+	  "collaborators": [
+		"LatexEditorController"
+	  ]
+	},
+	{
+	  "name": "ChooseTemplate",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Initializes choose template GUI"
+	  ],
+	  "collaborators": [
+		"LatexEditorController"
+	  ]
+	},
+	{
+	  "name": "MainWindow",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Initializes main window GUI"
+	  ],
+	  "collaborators": [
+		"LatexEditorController"
+	  ]
+	},
+	{
+	  "name": "EnvironmentSetup",
+	  "superclasses": "",
+	  "subclasses": "",
+	  "type": 1,
+	  "responsibilities": [
+		"Simulates the application environment during runtime"
+	  ],
+	  "collaborators": [
+		"OpeningWindow",
+		"ChooseTemplate",
+		"MainWindow",
+		"LatexEditorController",
+		"StableStrategy",
+		"VolatileStrategy"
+	  ]
+	}
+]
