@@ -59,7 +59,7 @@ Users can:
 ### Usage
 <br>
 
-Run the executable jar found in the repo.
+Run the executable jar found in releases.
 <br>
 Alternatively, the application is also ready to be imported into Eclipse IDE.
 
