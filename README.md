@@ -33,8 +33,7 @@ the prominent features that distinguishes the Latex Editor from other similar ap
 More about Latex:
 <br>
 
-[1] [wikipedia](https://en.wikipedia.org/wiki/LaTeX)
-
+[1] [wikipedia](https://en.wikipedia.org/wiki/LaTeX)<br>
 [2] [latex-project](https://www.latex-project.org/)
 
 <br>
