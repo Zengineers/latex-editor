@@ -3,7 +3,6 @@
 Latex Editor is a Java application that was reengineered and extended during the Software Development 2 course [@cse.uoi.gr](https://www.cs.uoi.gr/).<br><br>
 
 ### Summary
-<br>
  
 The goal of the project was to reengineer and extend an existing Java application. The
 application is a simple Latex editor for inexperienced Latex users. The first phase of the project revolved around understanding the application’s legacy architecture. We studied the
@@ -19,7 +18,6 @@ captured in UML package and class diagrams as well as CRC cards.
 <br>
 
 ### The Latex Editor Application
-<br>
 
 Latex Editor is a simple editor aiming to assist inexperienced Latex users with Latex document
 preparation. Latex is a high-quality document preparation markup language. It provides a
@@ -31,7 +29,6 @@ the prominent features that distinguishes the Latex Editor from other similar ap
 
 <br>
 More about Latex:
-<br>
 
 [1] [wikipedia](https://en.wikipedia.org/wiki/LaTeX)<br>
 [2] [latex-project](https://www.latex-project.org/)
@@ -39,7 +36,6 @@ More about Latex:
 <br>
 
 ### Features
-<br>
 
 Users can:
 -   Create a Latex document based on a document tamplate.
@@ -57,7 +53,6 @@ Users can:
 <br>
 
 ### Usage
-<br>
 
 Run the executable jar found in releases.
 <br>
@@ -66,7 +61,6 @@ Alternatively, the application is also ready to be imported into Eclipse IDE.
 <br>
 
 ### Credits
-<br>
 
 <p align="center">
   <img src="https://avatars.githubusercontent.com/u/94444618?s=400&u=665ca7ded45c1a0edc43742040bd8bf5813083c9&v=4" alt="Zengineers Logo" width="300" height="300">
