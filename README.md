@@ -69,7 +69,7 @@ Alternatively, the application is also ready to be imported into Eclipse IDE.
 <br>
 
 <p align="center">
-  <img src="https://lh3.googleusercontent.com/xxXiDpRLiQN6Qmrp7gI-Q_eOLRIXclalbnV3PpWLgjuHjbRL_SSFkHMWwdRqhCF7VU4Ht2G2jqSo0UJ15p52fOoVU4dPXcGhGW564vFTtLG7PWlk3996Yt0TL18v3d6TJkGy1KJ3ud0o-FwqzXQHvwNu1xZCz4sRQCd3swkr1cERqIfW6yewuMWnJEuikkK5-w9UNcPYpbbV36sbrEzsEIs_qK_Isyi4iLY2sJFSjTO8b7syRg5Z1sS40jqG3Nsc6HEmUVCIWD3OsB7Cja22_46ROxd_SVSiRDF2qifxYQEspMhGeW6MSajhRjS37s5i4PGX3nzC3AW0ZrPquI8dcbhMV1c2-140I8ZXPJEDJFYDEdKlQIpvVRuMqfXGJx-4Q6mSDBniVx9i_NKFdAx5cg71kXfOEzEiOF7SfjPZ1-AlYRosh2IZnogIdM_swMiEBxxATtxzx2poFBh-mzFk39huGvVLOOvYOS94bl5o5gcGAfSxUpK4rfptnJ32wnBsYjb8s1NiP151o8vEKjMQ7akJT2IB4rm5xCIbWB8lpOu34NmaQqTmgQ0ujUutEqEtD2Zay-uogGLRlwBTowfR6bxHoOKppBG2YFGLC4ZuuVkExu0eQIqAkLon9SS0yenQrPEgydomkXu7RNTEI4dgWc8RbQwDvur1O5HzY8hvdzc_ys37E1GP75EkaEAhSI96WYfVP3E-mc9dGO2T-4uji4Pp=w365-h366-no?authuser=0" alt="Zengineers Logo" width="300" height="300">
+  <img src="https://avatars.githubusercontent.com/u/94444618?s=400&u=665ca7ded45c1a0edc43742040bd8bf5813083c9&v=4" alt="Zengineers Logo" width="300" height="300">
   <br>
   <br>
   Tsiouri Angeliki
