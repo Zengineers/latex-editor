@@ -1,6 +1,6 @@
 # Latex Editor
 
-Latex Editor is a Java application that was reengineered and extended during the Software Development 2 course [@cse.uoi.gr](https://www.cs.uoi.gr/).<br><br>
+Latex Editor is a Java application that was reengineered and extended during the [Software Development 2](https://www.cs.uoi.gr/course/software-engineering-ii/?lang=en) course [@cse.uoi.gr](https://www.cs.uoi.gr/).<br><br>
 
 ### Summary
  
