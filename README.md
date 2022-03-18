@@ -41,7 +41,7 @@ Users can:
 -   Create a Latex document based on a document tamplate.
 -   Edit the contents of a Latex document.
 -   Add Latex commands in the Latex document using application's UI.
--   Active automatic version tracking that keeps track of the document evolution history.
+-   Activate automatic version tracking that keeps track of the document evolution history.
 -   Select between two different strategies of document version tracking.
 -   Disable the automatic version tracking at any time.
 -   Rollback to previous version of the Latex document based on the document evolution history.
